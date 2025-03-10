@@ -1,3 +1,5 @@
+package com.academy.learning_journal_team3.service;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/topics")
 @Controller
-public class TopicController {
+public class TopicsController {
 
     @Autowired
     private TopicsService topicsService;
 
-//    @GetMapping()
-//    public String getTopics(Model model){
-//        model.addAttribute("topic", topicsService.getAllTopics());
-//        return "topics.html";
-//    }
+    @GetMapping()
+    public String getTopics(Model model){
+        model.addAttribute("topic", topicsService.getAllTopics());
+        return "topics.html";
+    }
 
 }
