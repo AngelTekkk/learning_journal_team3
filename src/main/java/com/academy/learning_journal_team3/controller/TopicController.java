@@ -1,7 +1,7 @@
-package Controller;
+package com.academy.learning_journal_team3.controller;
 
 
-import Service.TopicsService;
+import com.academy.learning_journal_team3.service.TopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
