@@ -1,3 +1,5 @@
+package com.academy.learning_journal_team3.service;
+
 import java.sql.*;
 public class ReadData {
     public static void main(String[]args){
