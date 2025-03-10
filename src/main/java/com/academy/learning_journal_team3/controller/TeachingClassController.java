@@ -16,9 +16,9 @@ public class TeachingClassController {
     private TeachingClassService teachingClassService;
 
 
-//    @GetMapping()
-//    public String getTeachingClass(Model model) {
-//        model.addAttribute("teachingClass", teachingClassService.getAllTeachingClass());
-//        return "teachingClass.html";
-//    }
+    @GetMapping()
+    public String getTeachingClass(Model model) {
+        model.addAttribute("teachingClass", teachingClassService.getAllTeachingClass());
+        return "teachingClass.html";
+    }
 }
