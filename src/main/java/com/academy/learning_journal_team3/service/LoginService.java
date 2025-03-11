@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
-
+//
 //    @Autowired
 //    private PasswordEncoder passwordEncoder;
 //
@@ -27,7 +27,7 @@ public class LoginService {
 //
 //            Authentication authentication = authenticationManager.authenticate(token);
 //
-//            // Erfolgreiche Authentifizierung - den Authentication-Token im SecurityContext speichern
+////             Erfolgreiche Authentifizierung - den Authentication-Token im SecurityContext speichern
 //            SecurityContextHolder.getContext().setAuthentication(authentication);
 //
 //            return true;
