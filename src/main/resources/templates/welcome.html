@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <h1>Willkommen im Learning Journal,
+        <span th:text=${firstname}></span>
+        <span th:text=${lastname}></span> !</h1>
+
+    <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
+
+    <a href="teachingClass.html" th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
+
+    <a href="topics.html" th:href="@{/topics}">Themen verwalten</a>
+
+    <a href="logout.html" th:href="@{/logout}">Ausloggen</a>
+</body>
+</html>
