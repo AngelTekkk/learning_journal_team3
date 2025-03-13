@@ -22,7 +22,6 @@ public class TeachingClass {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "users")
     @OneToMany(mappedBy = "teachingClass")
     private List<User> userList;
 
