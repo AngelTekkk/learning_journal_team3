@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TopicsService {
@@ -14,7 +15,10 @@ public class TopicsService {
     private TopicsRepository topicsRepository;
 
     public List<Topic> getAllTopics() {
-
         return topicsRepository.findAll();
+    }
+
+    public Optional<Topic> getTopicName(long topicId){
+        return topicsRepository.findById(topicId);
     }
 }

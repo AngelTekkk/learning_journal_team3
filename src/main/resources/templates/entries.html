@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Übersicht aller Einträge</title>
 </head>
 <body>
-<h1>Das ist die /entries - Seite</h1>
+<h1>Hier ist eine Übersicht aller Einträge für das <span th:text="${topicName}"></span></h1>
+<div>
+    <div class="entries" th:each="entry: ${entry}">
+        <a th:href="@{/entry/{teachingClassId}/{topicId}/{entryId}}" th:text="${entry.title}">Eintrag 1</a>
+    </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.academy.learning_journal_team3.controller;
+//package com.academy.learning_journal_team3.controller;
 
 //import com.academy.learning_journal_team3.service.LoginService;
 //import org.springframework.beans.factory.annotation.Autowired;

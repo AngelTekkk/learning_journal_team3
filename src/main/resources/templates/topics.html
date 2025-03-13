@@ -8,9 +8,9 @@
 <body>
 <h1>Hier ist eine Übersicht aller angelegten Themen</h1>
 
-<div class="topicContainer">
-  <div class="topics" th:each="topic: ${topic}">
-    <a th:href="@{/entries/{id}(id=${teachingClass.id})}" th:text="${topic.name}">Thema 1</a>
+<div >
+  <div th:each="topic: ${topics}" >
+    <a th:href="|teachingClass/§{teachingClass.id}/topics/${topic.id}/entries|" th:text="${topic.name}" ></a>
   </div>
 </div>
 
