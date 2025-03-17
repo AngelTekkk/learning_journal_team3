@@ -1,8 +1,10 @@
 package com.academy.learning_journal_team3;
 
+import com.academy.learning_journal_team3.entity.Entry;
 import com.academy.learning_journal_team3.entity.TeachingClass;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
+import com.academy.learning_journal_team3.repository.EntryRepository;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
@@ -14,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import java.util.ArrayList;
 import java.util.List;
 
+//import static jdk.internal.org.jline.utils.InfoCmp.Capability.user1;
+
 @SpringBootApplication
 public class LearningJournalTeam3Application {
 
@@ -22,9 +26,11 @@ public class LearningJournalTeam3Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(TeachingClassRepository teachingClassRepository, UserRepository userRepository, TopicsRepository topicsRepository){
+	public CommandLineRunner demo(TeachingClassRepository teachingClassRepository, UserRepository userRepository, TopicsRepository topicsRepository, EntryRepository entryRepository){
 		return (args) -> {
 			System.out.println("Hallöchen");
+
+
 			TeachingClass teachingClass1 = TeachingClass.builder().name("Schulklasse 1").build();
 			TeachingClass teachingClass2 = TeachingClass.builder().name("Schulklasse 2").build();
 			TeachingClass teachingClass3 = TeachingClass.builder().name("Schulklasse 3").build();
@@ -33,13 +39,13 @@ public class LearningJournalTeam3Application {
 			teachingClassRepository.save(teachingClass3);
 
 
-			User user1 = User.builder().firstName("Markus").teachingClass(teachingClass1).build();  // builder erstetzt die hartgecodete Variante mit der erstellung der Liste
+			User user1 = User.builder().firstname("Markus").teachingClass(teachingClass1).build();  // builder erstetzt die hartgecodete Variante mit der erstellung der Liste
 			userRepository.save(user1);
-			User user2 = User.builder().firstName("Lisa").teachingClass(teachingClass1).build();
+			User user2 = User.builder().firstname("Lisa").teachingClass(teachingClass1).build();
 			userRepository.save(user2);
-			User user3 = User.builder().firstName("Verona").teachingClass(teachingClass2).build();
+			User user3 = User.builder().firstname("Verona").teachingClass(teachingClass2).build();
 			userRepository.save(user3);
-			User user4 = User.builder().firstName("Paul").teachingClass(teachingClass3).build();
+			User user4 = User.builder().firstname("Paul").teachingClass(teachingClass3).build();
 			userRepository.save(user4);
 
 
@@ -47,11 +53,15 @@ public class LearningJournalTeam3Application {
 			Topic topic2 = Topic.builder().name("Java").build();
 			Topic topic3 = Topic.builder().name("BWL").build();
 			Topic topic4 = Topic.builder().name("Netzwerktechnik").build();
-
 			topicsRepository.save(topic1);
 			topicsRepository.save(topic2);
 			topicsRepository.save(topic3);
 			topicsRepository.save(topic4);
+
+			Entry entry1 = Entry.builder().title("Java Grundlagen").content("Blabla").user(user1).date(null).build();
+			Entry entry2 = Entry.builder().title("SQL Grundlagen").content("Blablabla").user(user2).date(null).build();
+			entryRepository.save(entry1);
+			entryRepository.save(entry2);
 		};
 	}
 

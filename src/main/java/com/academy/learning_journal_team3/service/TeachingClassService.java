@@ -19,7 +19,7 @@ public class TeachingClassService {
         return teachingClassRepository.findAll();
     }
 
-    public Optional<TeachingClass> getTeachingClassId(long teachingClassID){
-        return teachingClassRepository.findById(teachingClassID);
+    public TeachingClass getTeachingClass(Long teachingClassID){
+        return teachingClassRepository.findById(teachingClassID).get();
     }
 }

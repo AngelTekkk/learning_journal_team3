@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Unterrichtsklassen übersichert</title>
+    <title>Unterrichtsklassen Übersicht</title>
 </head>
 <body>
     <h1>Wähle eine Unterrichtsklasse</h1>
     <div>
         <div th:each="teachingClass: ${teachingClass}">
-            <a th:href="|teachingClass/${teachingClass.id}/topics|" th:text="${teachingClass.name}"></a>
+            <a th:href="|/teachingClass/${teachingClass.id}/topics|" th:text="${teachingClass.name}"></a>
         </div>
     </div>
 </body>
