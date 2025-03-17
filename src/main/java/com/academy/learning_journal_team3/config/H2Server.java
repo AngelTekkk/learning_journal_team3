@@ -12,4 +12,3 @@ public class H2Server {
         return Server.createTcpServer("-tcp", "-tcpPort", "8043", "-tcpAllowOthers");
     }
 }
-//svnäpsnv
