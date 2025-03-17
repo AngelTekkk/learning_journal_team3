@@ -16,12 +16,12 @@ public class TeachingClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "users")
     @OneToMany(mappedBy = "teachingClass")
     private List<User> userList;
 
@@ -32,4 +32,5 @@ public class TeachingClass {
             inverseJoinColumns = @JoinColumn(name = "topic_id")
     )
     private List<Topic> topicList;
+
 }

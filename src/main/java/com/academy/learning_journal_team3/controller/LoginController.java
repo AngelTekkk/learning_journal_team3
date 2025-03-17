@@ -1,5 +1,5 @@
 //package com.academy.learning_journal_team3.controller;
-//
+
 //import com.academy.learning_journal_team3.service.LoginService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
