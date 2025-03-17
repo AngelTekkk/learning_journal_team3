@@ -18,7 +18,7 @@ public class TopicsService {
         return topicsRepository.findAll();
     }
 
-    public Optional<Topic> getTopicName(long topicId){
+    public Optional<Topic> getTopic(long topicId){
         return topicsRepository.findById(topicId);
     }
 }

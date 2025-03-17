@@ -25,7 +25,7 @@ public class TopicsController {
     @GetMapping()
     public String getTopics(Model model, @PathVariable(name="teachingClassId") Long teachingClassID){
         model.addAttribute("topics", topicsService.getAllTopics());
-        model.addAttribute("teachingClaas", teachingClassService.getTeachingClassId(teachingClassID));
+        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
         return "topics";
     }
 
