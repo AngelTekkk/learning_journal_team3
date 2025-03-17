@@ -9,7 +9,6 @@ import java.sql.SQLException;
 public class H2Server {
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2TcpServer() throws SQLException {
-        return Server.createTcpServer("-tcp", "-tcpAllowsOthers", "tcpPort", "8043");
+        return Server.createTcpServer("-tcp", "-tcpPort", "8043", "-tcpAllowOthers");
     }
 }
-//svnäpsnv
