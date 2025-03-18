@@ -54,10 +54,6 @@ public class LearningJournalTeam3Application {
 			topicsRepository.save(topic3);
 			topicsRepository.save(topic4);
 
-//			Entry entry1 = Entry.builder().title("Java Grundlagen").content("Blabla").user(user1).date(null).build();
-//			Entry entry2 = Entry.builder().title("SQL Grundlagen").content("Blablabla").user(user2).date(null).build();
-//			entryRepository.save(entry1);
-//			entryRepository.save(entry2);
 		};
 	}
 }

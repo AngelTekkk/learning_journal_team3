@@ -5,6 +5,7 @@ import com.academy.learning_journal_team3.model.UserModel;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class UserService {
