@@ -15,10 +15,6 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    public UserService(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
-
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);

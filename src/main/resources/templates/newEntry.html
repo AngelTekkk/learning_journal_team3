@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texteintrag</title>
+</head>
+<body>
+<h1>Erstelle einen neuen Eintrag</h1>
+
+<form action="/newEntry" method="post">
+    <input type="number" name="UserId" placeholder="User ID">
+    <br>
+    <textarea id="newTitle" name="Title" rows="1" cols="60" placeholder="Titel"></textarea>
+    <br>
+    <textarea id="newEntry" name="Entry" rows="20" cols="80" maxlength="1000"></textarea>
+    <br>
+    <button type="submit">Speichern</button>
+    <p>Klicke Speichern und dein Text wird in der Datenbank gespeichert</p>
+</form>
+</body>
+</html>
