@@ -12,7 +12,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Integer createUser(UserModel usermodel){
+    public Long createUser(UserModel usermodel){
         User user = userRepository.save(User.builder()
                 .firstname(usermodel.firstname())
                 .lastname(usermodel.lastname())

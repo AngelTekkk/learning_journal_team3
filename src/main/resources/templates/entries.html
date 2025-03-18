@@ -5,11 +5,15 @@
     <title>Übersicht aller Einträge</title>
 </head>
 <body>
-<h1>Hier ist eine Übersicht aller Einträge für das Thema<span th:text="${topicName}"></span></h1>
+<h1>Hier ist eine Übersicht aller Einträge für das Thema <span th:text="${topic.name}"></span></h1>
 <div>
     <div th:each="entry: ${entries}">
-        <a th:href="@{/entry/{teachingClassId}/{topicId}/{entryId}}" th:text="${entry.title}">Eintrag 1</a>
+        <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries/${entry.id}|" th:text="${entry.title}">Eintrag 1</a>
     </div>
+</div>
+
+<div>
+    <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries/newEntry|">Neuen Eintrag erstellen</a>
 </div>
 </body>
 </html>

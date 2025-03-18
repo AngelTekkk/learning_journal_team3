@@ -13,16 +13,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//import static jdk.internal.org.jline.utils.InfoCmp.Capability.user1;
-
 @SpringBootApplication
 public class LearningJournalTeam3Application {
 
 	public static void main(String[] args) throws Throwable {
-		SpringApplication.run(LearningJournalTeam3Application.class, args);
+		SpringApplication.
+				run(LearningJournalTeam3Application.class, args);
 	}
 
 	@Bean
@@ -58,13 +54,12 @@ public class LearningJournalTeam3Application {
 			topicsRepository.save(topic3);
 			topicsRepository.save(topic4);
 
-			Entry entry1 = Entry.builder().title("Java Grundlagen").content("Blabla").user(user1).date(null).build();
-			Entry entry2 = Entry.builder().title("SQL Grundlagen").content("Blablabla").user(user2).date(null).build();
-			entryRepository.save(entry1);
-			entryRepository.save(entry2);
+//			Entry entry1 = Entry.builder().title("Java Grundlagen").content("Blabla").user(user1).date(null).build();
+//			Entry entry2 = Entry.builder().title("SQL Grundlagen").content("Blablabla").user(user2).date(null).build();
+//			entryRepository.save(entry1);
+//			entryRepository.save(entry2);
 		};
 	}
-
 }
 
 
