@@ -8,16 +8,12 @@
 <h1>Neuen Benutzer erstellen</h1>
 <form th:action="@{/registration}" method="post">
     <label>First Name :</label><br/>
-    <input type="text" name="firstname" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
+    <input type="text" name="firstName" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
                title="Bitte nur Buchstaben (min. 2, max. 50 Zeichen)" required/><br/>
 
     <label>Last Name :</label><br/>
-    <input type="text" name="lastname" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
+    <input type="text" name="lastName" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
                title="Bitte nur Buchstaben (min. 2, max. 50 Zeichen)" required/><br/>
-
-    <label>Username :</label><br/>
-    <input type="text" name="username" pattern="[A-Za-z0-9_-]{5,50}"
-               title="Bitte nur Buchstaben, Zahlen, Unterstriche und Minuszeichen (min. 5, max. 50 Zeichen)" required/><br/>
 
     <label>E-Mail :</label><br/>
     <input type="email" name="email" required/><br/>

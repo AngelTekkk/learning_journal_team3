@@ -19,19 +19,19 @@ public class User {
     private Long id;
 
     @Column(name = "first_name")
-    private String firstname;
+    private String firstName;
 
     @Column(name = "last_name")
-    private String lastname;
-
-    @Column (name = "username")
-    private String username;
+    private String lastName;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private String role; // ADMIN, USER
 
     @OneToMany(mappedBy = "user")
     private List<Entry> entryList;
@@ -44,11 +44,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstName='" + firstname + '\'' +
-                ", lastName='" + lastname + '\'' +
-                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 ", entryList=" + entryList +
                 ", teachingClass=" + teachingClass +
                 '}';

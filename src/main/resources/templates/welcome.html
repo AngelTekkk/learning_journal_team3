@@ -6,8 +6,8 @@
 </head>
 <body>
     <h1>Willkommen im Learning Journal,
-        <span th:text=${firstname}></span>
-        <span th:text=${lastname}></span> !</h1>
+        <span th:if="${user != null}" th:text="${user.firstName}"></span>
+        <span th:if="${user != null}" th:text="${user.lastName}"></span> !</h1>
 
     <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
 
