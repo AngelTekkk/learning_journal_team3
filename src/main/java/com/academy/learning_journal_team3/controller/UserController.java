@@ -4,12 +4,10 @@ import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.academy.learning_journal_team3.model.UserModel;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
@@ -23,11 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String userRegistration(@ModelAttribute UserModel usermodel, RedirectAttributes redirectAttributes, User user) {
-        Integer userID = userService.createUser(usermodel);
-        redirectAttributes.addAttribute("id",userID);
-        redirectAttributes.addFlashAttribute("firstname", user.getFirstname());
-        redirectAttributes.addFlashAttribute("lastname", user.getLastname());
+    public String userRegistration(@ModelAttribute User user) {
+        userService.saveUser(user);
         return "redirect:/welcome";
     }
 }
