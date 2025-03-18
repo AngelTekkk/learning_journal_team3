@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String userRegistration(@ModelAttribute UserModel usermodel, RedirectAttributes redirectAttributes, User user) {
-        Integer userID = userService.createUser(usermodel);
+        Long userID = userService.createUser(usermodel);
         redirectAttributes.addAttribute("id",userID);
         redirectAttributes.addFlashAttribute("firstname", user.getFirstname());
         redirectAttributes.addFlashAttribute("lastname", user.getLastname());
