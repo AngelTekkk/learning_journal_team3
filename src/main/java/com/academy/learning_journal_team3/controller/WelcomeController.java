@@ -16,17 +16,22 @@ public class WelcomeController {
 
     @GetMapping("/welcome")
     public String welcomePage(Model model, Authentication authentication){
-        String email = authentication.getName();
-        User user = userService.findByEmail(email);
 
-        System.out.println("User found: " + user); // Проверяем, существует ли пользователь
-        if (user != null) {
-            System.out.println("User firstName: " + user.getFirstName());
-            System.out.println("User lastName: " + user.getLastName());
-            System.out.println("User role: " + user.getRole());
+        User currentUser = userService.getCurrentUser(authentication);
+        if (authentication != null) {
+
+            String firstName = currentUser.getFirstName();
+            String lastName = currentUser.getLastName();
+            String role = currentUser.getRole();
+
+            model.addAttribute("role", role);
+
+            System.out.println("firstName: " + firstName);
+            System.out.println("lastName: " + lastName);
+            System.out.println("role: " + role);
         }
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", currentUser);
         return "welcome";
     }
 }
