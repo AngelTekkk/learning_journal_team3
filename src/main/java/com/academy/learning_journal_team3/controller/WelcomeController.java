@@ -23,6 +23,7 @@ public class WelcomeController {
         if (user != null) {
             System.out.println("User firstName: " + user.getFirstName());
             System.out.println("User lastName: " + user.getLastName());
+            System.out.println("User role: " + user.getRole());
         }
 
         model.addAttribute("user", user);
