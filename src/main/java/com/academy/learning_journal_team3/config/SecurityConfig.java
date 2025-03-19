@@ -28,7 +28,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .usernameParameter("email") // Используем email вместо username
+                        .usernameParameter("email")
                         .defaultSuccessUrl("/welcome", true)
                         .permitAll()
                 )
