@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/welcome.css">
 <head>
     <meta charset="UTF-8">
     <title>Welcome Page</title>
@@ -11,7 +12,9 @@
 
     <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
 
-    <a href="teachingClass.html" th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
+    <a href="teachingClass.html" th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a><br>
+    <a href="topics.html" th:href="@{/topics}">Themen verwalten</a><br>
+    <a href="logout.html" th:href="@{/logout}">Ausloggen</a><br>
 
     <a th:href="@{/topics}">Themen verwalten</a>
 
