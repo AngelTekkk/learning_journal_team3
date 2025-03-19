@@ -13,8 +13,13 @@
 
     <a href="teachingClass.html" th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
 
-    <a href="topics.html" th:href="@{/topics}">Themen verwalten</a>
+    <a th:href="@{/topics}">Themen verwalten</a>
+
+    <div th:if="${user.role == 'ADMIN'}">
+        <a th:href="@{/registration}">Benutzer erstellen</a>
+    </div>
 
     <a href="logout.html" th:href="@{/logout}">Ausloggen</a>
+
 </body>
 </html>
