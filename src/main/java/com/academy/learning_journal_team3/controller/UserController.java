@@ -3,6 +3,7 @@ package com.academy.learning_journal_team3.controller;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +17,11 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registrationPage() {
+    public String registrationPage(Authentication authentication) {
+        System.out.println(authentication.getDetails());
+        System.out.println(authentication.getAuthorities());
+        System.out.println(authentication.getCredentials());
+        System.out.println(authentication.getPrincipal());
         return "registration";
     }
 
