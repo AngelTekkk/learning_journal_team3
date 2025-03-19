@@ -16,8 +16,8 @@
 
     <h1>Neues Klassenzimmer erstellen</h1>
     <form id="classroomForm" action="/createTeachingClass" method="post">
-        <label for="name">Name des Klassenzimmers:</label><br/>
-        <input type="text" id="name" name="name" required><br/>
+        <label for="name">Name des Klassenzimmers:</label>
+        <input type="text" id="name" name="name" required><br>
         <button id="submit" type="submit">Klassenzimmer erstellen</button>
         <span type="text" th:text ="${successMessage} ? ${successMessage} : ${errorMessage}"></span>
         <input type="hidden" id="successMessage" th:value="${successMessage}">

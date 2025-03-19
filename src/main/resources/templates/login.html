@@ -3,31 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" href="StyleAnmelden.css">-->
+    <link rel="stylesheet" href=/css/login.css>
     <title>Login bei Learning Journal</title>
 </head>
 
 <body>
     <h1>Anmelden bei Learning Journal</h1>
-
     <form th:action="@{/login}" method="POST">
         <div class="Anmelden">
-            <input type="email" name="email" placeholder="E-mail" required>
-            <input type="password" name="password" placeholder="Passwort" pattern="[a-zA-Z0-9]{8,}" required>
+            <input type="email" name="email" placeholder="E-mail" required><br>
+            <input type="password" name="password" placeholder="Passwort" pattern="[a-zA-Z0-9]{8,}" required><br>
             <input type="submit" value="Anmelden">
         </div>
     </form>
-
     <div class="containerLink">
         <a href="PasswortVergessen.html" target="_blank">Passwort vergessen</a>
     </div>
-
     <div th:if="${error}" style="color: red;">
         <p th:text="${error}"></p>
     </div>
 
 </body>
 </html>
+
 
 
 
