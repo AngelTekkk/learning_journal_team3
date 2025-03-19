@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="/css/teachingClass.css">
     <title>Unterrichtsklassen Übersicht</title>
 </head>
 <body>
@@ -13,9 +13,8 @@
             <a th:href="|/teachingClass/${teachingClass.id}/topics|" th:text="${teachingClass.name}"></a>
         </div>
     </div>
-    <hr>
-    <h2>Neues Klassenzimmer erstellen</h2>
-    <hr>
+
+    <h1>Neues Klassenzimmer erstellen</h1>
     <form id="classroomForm" action="/createTeachingClass" method="post">
         <label for="name">Name des Klassenzimmers:</label><br/>
         <input type="text" id="name" name="name" required><br/>
@@ -25,18 +24,16 @@
         <input type="hidden" id="errorMessage" th:value="${errorMessage}">
     </form>
     <hr>
-    <caption>Liste aller Klassenzimmer</caption>
-    <table class="teachingclass_table">
-        <tr>
-            <th>ID:</th>
+    <h2>Liste aller Klassenzimmer</h2>
+    <table>
+        <tr >
+            <th >ID:</th>
             <th>Klassenname:</th>
         </tr>
         <tr th:each="teachingClass: ${teachingClass}">
             <td th:text="${teachingClass.id}">1234</td>
             <td th:text="${teachingClass.name}">Test</td>
         </tr>
-
-
     </table>
 </body>
 </html>
