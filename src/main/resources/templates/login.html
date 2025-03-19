@@ -12,8 +12,8 @@
 
     <form th:action="@{/login}" method="POST">
         <div class="Anmelden">
-            <input type="email" placeholder="E-mail" required>
-            <input type="password" placeholder="Passwort" pattern="[a-z0-5]{8,}" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="password" placeholder="Passwort" pattern="[a-zA-Z0-9]{8,}" required>
             <input type="submit" value="Anmelden">
         </div>
     </form>

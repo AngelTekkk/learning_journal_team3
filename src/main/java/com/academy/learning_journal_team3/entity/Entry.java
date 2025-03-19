@@ -32,6 +32,4 @@ public class Entry {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime date;
-
-
 }
