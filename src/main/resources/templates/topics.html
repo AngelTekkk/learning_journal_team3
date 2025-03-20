@@ -3,18 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/topics.css">
     <title>Themenübersicht</title>
 </head>
 <body>
 <h1>Hier ist eine Übersicht aller angelegten Themen</h1>
 
-<div >
-  <div th:each="topic: ${topics}" >
-    <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries|" th:text="${topic.name}" ></a>
-  </div>
-</div>
+<!--<div >-->
+<!--  <div th:each="topic: ${topic}" >-->
+<!--    <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries|" th:text="${topic.name}" ></a>-->
+<!--  </div>-->
+<!--</div>-->
+ <h1>Neues Thema erstellen</h1>
+<form id="classroomForm" action="/createTopic" method="post">
+  <label for="name">Name des Themas</label>
+  <input type="text" id="name" required><br>
+  <button id="submit" type="submit">Thema erstellen</button>
+<!--  <span type="text" th:text ="${successMessage} ? ${successMessage} : ${errorMessage}"></span>-->
+<!--  <input type="hidden" id="successMessage" th:value="${successMessage}">-->
+<!--  <input type="hidden" id="errorMessage" th:value="${errorMessage}">-->
+</form>
+<hr2>Liste aller Themen</hr2>
+<table>
+    <tr>
+      <th>ID:</th>
+      <th>Themenname:</th>
+    </tr>
+    <tr th:each="topic: ${topics}">
+      <td th:text="${topic.getId()}">777</td>
+      <td th:text="${topic.getName()}">Test</td>
 
-
+    </tr>
+</table>
 </body>
-</html>
 </html>
