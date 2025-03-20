@@ -39,18 +39,4 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     private TeachingClass teachingClass;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", entryList=" + entryList +
-                ", teachingClass=" + teachingClass +
-                '}';
-    }
 }

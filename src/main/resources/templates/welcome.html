@@ -11,15 +11,15 @@
 
     <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
 
-    <a href="teachingClass.html" th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
+    <a th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
 
     <a th:href="@{/topics}">Themen verwalten</a>
 
-    <div th:if="${user.role == 'ADMIN'}">
-        <a th:href="@{/registration}">Benutzer erstellen</a>
-    </div>
+    <a th:href="${user.role == 'ADMIN' ? '/admin/users' : '/profile'}">
+        <span th:text="${user.role == 'ADMIN'} ? 'Benutzerverwaltung' : 'Benutzerprofil'"></span>
+    </a>
 
-    <a href="logout.html" th:href="@{/logout}">Ausloggen</a>
+    <a th:href="@{/logout}">Ausloggen</a>
 
 </body>
 </html>
