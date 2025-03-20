@@ -38,7 +38,6 @@ public class TeachingClassController {
 
     }
 
-
     @GetMapping("/teachingClass")
     public String teachingClasses(Model model) {
         List<TeachingClass> allTeachingClasses = teachingClassService.getAllClasses();
