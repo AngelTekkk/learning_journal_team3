@@ -12,10 +12,9 @@
 
     <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
 
+    <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>
     <a th:href="@{/teachingClass}">Unterrichtsklassen verwalten</a>
-
     <a th:href="@{/topics}">Themen verwalten</a>
-
     <a th:href="${user.role == 'ADMIN' ? '/admin/users' : '/profile'}">
         <span th:text="${user.role == 'ADMIN'} ? 'Benutzerverwaltung' : 'Benutzerprofil'"></span>
     </a>
