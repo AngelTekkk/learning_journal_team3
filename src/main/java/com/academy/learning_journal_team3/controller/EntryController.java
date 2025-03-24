@@ -29,15 +29,14 @@ public class EntryController {
     @GetMapping()
     public String getEntries(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
         model.addAttribute("entries", entryService.getAllEntries());
-//        model.addAttribute("topic", topicsService.getTopic(topicID).get());
+        model.addAttribute("topic", topicsService.getTopic(topicID).get());
         model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
         return "entries";
     }
 
     @GetMapping("/newEntry")
-    public String showNewEntryPage(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
-//        model.addAttribute("topic", topicsService.getTopic(topicID).get());
-        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
+    public String getNewEntry(Model model) {
+        model.addAttribute("entry", new Entry());
         return "newEntry";
     }
 }

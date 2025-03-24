@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "topic")
+@Table(name = "topics")
 public class Topic {
 
     @Id
@@ -24,4 +24,7 @@ public class Topic {
 
     @ManyToMany(mappedBy = "topicList")
     private List<TeachingClass> teachingClasses;
+
+    @OneToMany(mappedBy = "topic")
+    private List<Entry> entryList;
 }
