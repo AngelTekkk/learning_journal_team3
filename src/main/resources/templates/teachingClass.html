@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +8,44 @@
 </head>
 <body>
     <h1>Wähle eine Unterrichtsklasse</h1>
-    <div>
+    <div sec:authorize="hasRole('USER')">
         <div th:each="teachingClass: ${teachingClass}">
             <a th:href="|/teachingClass/${teachingClass.id}/topics|" th:text="${teachingClass.name}"></a>
         </div>
     </div>
 
-    <h1>Neues Klassenzimmer erstellen</h1>
-    <form id="classroomForm" action="/createTeachingClass" method="post">
-        <label for="name">Name des Klassenzimmers:</label>
-        <input type="text" id="name" name="name" required><br>
-        <button id="submit" type="submit">Klassenzimmer erstellen</button>
-        <span type="text" th:text ="${successMessage} ? ${successMessage} : ${errorMessage}"></span>
-        <input type="hidden" id="successMessage" th:value="${successMessage}">
-        <input type="hidden" id="errorMessage" th:value="${errorMessage}">
-    </form>
-    <hr>
-    <h2>Liste aller Klassenzimmer</h2>
-    <table>
-        <tr >
-            <th >ID:</th>
-            <th>Klassenname:</th>
-        </tr>
-        <tr th:each="teachingClass: ${teachingClass}">
-            <td th:text="${teachingClass.id}">1234</td>
-            <td th:text="${teachingClass.name}">Test</td>
-        </tr>
-    </table>
+    <div sec:authorize="hasRole('ADMIN')">
+        <h1>Neues Klassenzimmer erstellen</h1>
+        <form id="classroomForm" action="/createTeachingClass" method="post">
+            <label for="name">Name des Klassenzimmers:</label>
+            <input type="text" id="name" name="name" required><br>
+            <button id="submit" type="submit">Klassenzimmer erstellen</button>
+            <span type="text" th:text ="${successMessage} ? ${successMessage} : ${errorMessage}"></span>
+            <input type="hidden" id="successMessage" th:value="${successMessage}">
+            <input type="hidden" id="errorMessage" th:value="${errorMessage}">
+        </form>
+        <hr>
+        <h2>Liste aller Klassenzimmer</h2>
+        <table>
+            <tr >
+                <th >ID:</th>
+                <th>Klassenname:</th>
+                <th>Aktionen</th>
+            </tr>
+            <tr th:each="teachingClass: ${teachingClass}">
+                <td th:text="${teachingClass.id}">1234</td>
+                <td th:text="${teachingClass.name}">Test</td>
+                <td>
+                    <a id="editButton" th:href="@{/admin/teachingClass/{id}(id=${teachingClass.id})}" class="btn btn-sm btn-primary">Bearbeiten</a>
+
+                    <form th:action="@{/teachingClass/delete}" method="post" style="display: inline;"
+                          onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Klassenzimmer löschen möchten?');">
+                        <input type="hidden" name="userId" th:value="${teachingClass.id}" />
+                        <button id="deleteButton"type="submit" class="btn btn-sm btn-danger">Löschen</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

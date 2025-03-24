@@ -53,6 +53,8 @@
     <label class="form-label">E-Mail :</label><br/>
     <input class="form-control" th:value="${user.email}" type="email" name="email" required/><br/>
 
+    <p th:if="${error=='email_exists'}">Diese E-Mail ist bereits vorhanden.</p>
+
     <label class="form-label">Password :</label><br/>
     <input class="form-control" type="password" name="password"
            th:required="${!editMode || adminCreation}"
@@ -92,5 +94,6 @@
         <button type="submit" class="btn btn-danger mt-3">Konto löschen</button>
     </form>
 </div>
+
 </body>
 </html>

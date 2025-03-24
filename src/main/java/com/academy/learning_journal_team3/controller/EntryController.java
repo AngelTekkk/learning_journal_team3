@@ -30,7 +30,7 @@ public class EntryController {
     @GetMapping("/entries")
     public String getEntries(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
         model.addAttribute("entries", entryService.getAllEntries());
-        model.addAttribute("topic", topicsService.getTopic(topicID).get());
+//        model.addAttribute("topic", topicsService.getTopic(topicID).get());
         model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
         return "entries";
     }
