@@ -1,6 +1,7 @@
 package com.academy.learning_journal_team3.controller;
 
 
+import com.academy.learning_journal_team3.entity.Entry;
 import com.academy.learning_journal_team3.service.EntryService;
 import com.academy.learning_journal_team3.service.TeachingClassService;
 import com.academy.learning_journal_team3.service.TopicsService;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
-@RequestMapping("/teachingClass/{teachingClassId}/topics/{topicId}/entries")
+//@RequestMapping("/teachingClass/{teachingClassId}/topics/{topicId}/entries")
 @Controller
 public class EntryController {
 
@@ -26,7 +27,7 @@ public class EntryController {
     @Autowired
     private TeachingClassService teachingClassService;
 
-    @GetMapping()
+    @GetMapping("/entries")
     public String getEntries(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
         model.addAttribute("entries", entryService.getAllEntries());
         model.addAttribute("topic", topicsService.getTopic(topicID).get());
@@ -34,12 +35,19 @@ public class EntryController {
         return "entries";
     }
 
+//    @GetMapping("/newEntry")
+//    public String showNewEntryPage(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
+//        model.addAttribute("topic", topicsService.getTopic(topicID).get());
+//        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
+//        return "newEntry";
+//    }
+
     @GetMapping("/newEntry")
-    public String showNewEntryPage(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
-        model.addAttribute("topic", topicsService.getTopic(topicID).get());
-        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
+    public String getNewEntry(Model model) {
+        model.addAttribute("entry", new Entry());
         return "newEntry";
     }
+
 }
 
 
