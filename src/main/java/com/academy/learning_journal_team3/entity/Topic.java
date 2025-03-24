@@ -24,5 +24,4 @@ public class Topic {
 
     @ManyToMany(mappedBy = "topicList")
     private List<TeachingClass> teachingClasses;
-
 }

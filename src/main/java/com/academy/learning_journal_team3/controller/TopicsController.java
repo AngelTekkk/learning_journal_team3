@@ -1,6 +1,7 @@
 package com.academy.learning_journal_team3.controller;
 
 
+import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
 import com.academy.learning_journal_team3.service.TeachingClassService;
 import com.academy.learning_journal_team3.service.TopicsService;
@@ -22,26 +23,27 @@ public class TopicsController {
     private TeachingClassService teachingClassService;
 
 
-    @PostMapping("/createTopics")
+    @PostMapping("/createTopic")
     public String createTopics(@ModelAttribute TopicsModel topicsModel, RedirectAttributes redirectAttributes){
         try {
             Long topicsId = topicsService.createTopic(topicsModel);
-            redirectAttributes.addAttribute("id", topicsId);
-            redirectAttributes.addFlashAttribute("id", topicsId);
-            redirectAttributes.addFlashAttribute("successMessage", "Thema erstellt");
-            return "redirect:/Topics";
+//            redirectAttributes.addAttribute("id", topicsId);
+//            redirectAttributes.addFlashAttribute("id", topicsId);
+            redirectAttributes.addFlashAttribute("successMessage", "Thema erfolgreich erstellt");
+            return "redirect:/topics";
 
         }catch (Exception e){
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return"redirect:Topics";
+            return"redirect:topics";
         }
 
     }
 
     @GetMapping("/topics")
     public String getTopics(Model model){
-        model.addAttribute("topics", topicsService.getAllTopics());
-//        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
+        List<Topic> topics = topicsService.getAllTopics();
+        model.addAttribute("topics", topics);
+        model.addAttribute("topicsModel", TopicsModel.builder().build());
         return "topics";
     }
 

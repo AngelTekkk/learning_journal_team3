@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.View;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,9 +21,11 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registrationPage(Authentication authentication, Model model) {
+    public String registrationPage(Authentication authentication, Model model,
+            @RequestParam(name = "error", defaultValue = "") String error) {
         boolean isUsers = !userService.getAllUsers().isEmpty();
         model.addAttribute("isUsers", isUsers);
+        model.addAttribute("error",error);
 
         if (authentication != null) {
             boolean isAdmin = authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
@@ -51,6 +54,9 @@ public class UserController {
 
     @PostMapping("/registration")
     public String userRegistration(@ModelAttribute User user, Authentication authentication) {
+        if (userService.findByEmail(user.getEmail()) != null) {
+            return "redirect:/registration?error=email_exists";
+        }
         if (authentication != null &&
                 authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")) &&
                 (user.getId() == null || user.getId() == 0)) {
