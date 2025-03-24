@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,4 +33,8 @@ public class Entry {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name="topic_id")
+    private Topic topic;
 }
