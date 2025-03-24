@@ -3,6 +3,7 @@ package com.academy.learning_journal_team3.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,6 +24,10 @@ public class TeachingClass {
 
     @OneToMany(mappedBy = "teachingClass")
     private List<User> userList;
+
+    @Column(name="created_at", updatable = false)
+    private LocalDateTime createdAt;
+
 
     @ManyToMany
     @JoinTable(

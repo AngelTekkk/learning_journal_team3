@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class TopicsService {
-
-    public Long createTopics(TopicsModel topicsModel) {
-    return 1L;
-    }
+//
+//    public Long createTopics(TopicsModel topicsModel) {
+//    return 1L;
+//    }
 
     @Autowired
     private TopicsRepository topicsRepository;
