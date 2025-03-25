@@ -36,9 +36,6 @@ public class TopicsController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return"redirect:topics";
         }
-
-
-
     }
 
     @GetMapping("/topics")
@@ -48,6 +45,5 @@ public class TopicsController {
         model.addAttribute("topicsModel", TopicsModel.builder().build());
         return "topics";
     }
-
 }
 

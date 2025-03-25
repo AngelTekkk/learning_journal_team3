@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-
 @Controller
 public class TeachingClassController {
 
@@ -27,7 +26,6 @@ public class TeachingClassController {
 
     @Autowired
     private TopicsService topicsService;
-
 
     @PostMapping("/createTeachingClass")
     public String createTeachingClass(@ModelAttribute TeachingclassModel teachingClassModel, RedirectAttributes redirectAttributes){
@@ -42,7 +40,6 @@ public class TeachingClassController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/teachingClass";
         }
-
     }
 
     @GetMapping("/teachingClass")
