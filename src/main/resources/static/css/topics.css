@@ -1,0 +1,90 @@
+body{
+    background-color: Gainsboro;
+    font-family: Trebuchet MS, sans-serif;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+h1{
+    margin-top: 5%;
+    background-color: LightSlateGrey;
+    color: white;
+    padding: 2%;
+    width: 100%;
+}
+
+a {
+    display: block;
+    padding: 5px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: LightSlateGrey;
+    background-color: #ffffff;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+a:hover {
+    background-color: DarkSeaGreen;
+}
+
+h2{
+    color: LightSlateGrey;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label{
+    display: block;
+    color: LightSlateGrey;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 7px;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 60%;
+    padding: 7px;
+    background-color: DarkSeaGreen ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button.zurück{
+    width: 200px;
+    max-width: 50%;
+    display: inline-block;
+}
+button:hover {
+    background-color: CadetBlue ;
+}
+
+th, td {
+    color: LightSlateGrey;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
+th {
+    background-color: #ecf0f1;
+}

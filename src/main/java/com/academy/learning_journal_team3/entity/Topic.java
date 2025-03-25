@@ -31,4 +31,10 @@ public class Topic {
 
     @OneToMany(mappedBy = "topic")
     private List<Entry> entryList;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
 }

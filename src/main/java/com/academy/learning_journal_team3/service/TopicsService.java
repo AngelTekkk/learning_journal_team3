@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -51,6 +52,7 @@ public class TopicsService {
         }
         Topic topic = topicsRepository.save(Topic.builder()
                 .name(topicsModel.name())
+                .createdAt(LocalDateTime.now())
                 .build());
         return topic.getId();
     }
