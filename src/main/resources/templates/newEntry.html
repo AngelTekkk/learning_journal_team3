@@ -15,16 +15,21 @@
         <select name="Topics" id="topic">
             <option th:each="topic : ${topics}"
                     th:value="${topic.id}"
-                    th:text="${topic.name}"></option>
-                    th:selected="${entry.topic != null and entry.topic.id == topic.id}"></option> // FIXME: hier muss noch geschaut werden dass das entsprechende Topic angezeigt wird
+                    th:text="${topic.name}"
+                    th:selected="${entry.topic != null and entry.topic.id.toString() == topic.id.toString()}"></option>
         </select>
     </div>
-    <textarea id="newTitle" name="Title" rows="1" cols="60" placeholder="Titel" th:text="${entry.title}"></textarea>
+    <textarea id="newTitle" name="Title" rows="1" cols="60" placeholder="Titel" th:text="${entry.title}" th:value="${entry.title}"></textarea>
     <br>
-    <textarea id="newEntry" name="Entry" rows="20" cols="80" maxlength="1000" th:text="${entry.content}"></textarea>
+    <textarea id="newEntry" name="Entry" rows="20" cols="80" maxlength="1000" th:text="${entry.content}" th:value="${entry.content}"></textarea>
     <br>
+    <input type="hidden" name="EntryId" th:value="${entry.id}"/>
     <button type="submit">Speichern</button>
     <p>Klicke Speichern und dein Text wird in der Datenbank gespeichert</p>
 </form>
+<div>
+    <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Welcomeseite</a>
+</div>
+
 </body>
 </html>

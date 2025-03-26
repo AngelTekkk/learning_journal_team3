@@ -34,4 +34,5 @@ public class EntryService {
     public List<Entry> getEntryByUser(User user){
         return entryRepository.findByUser(user);
     }
+
 }

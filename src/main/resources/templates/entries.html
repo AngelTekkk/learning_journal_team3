@@ -7,6 +7,27 @@
 <body>
 <h1>Hier ist eine Übersicht aller Einträge</h1>
 <div>
+    <h2>Nach was möchtest du deine Einträge Filtern</h2>
+    <div>
+    <form th:action="@{/entries}" th:object="${filter}" method="get">
+
+    <label for="topic">Themafilter:</label>
+    <select id="topic" name="topic">
+        <option value="" selected>---</option>
+        <option th:each="topic : ${topics}"
+                th:value="${topic.id}"
+                th:text="${topic.name}"></option>
+    </select>
+
+    <label for="person">Personenfilter:</label>
+    <select id="person" name="personType">
+
+    <option value="all" selected>---</option>
+    <option value="me">Mich</option>
+    </select>
+    <button type="submit">Anzeigen</button>
+    </form>
+    </div>
     <table>
         <thead>
         <tr>
@@ -33,6 +54,9 @@
 </div>
 <div>
     <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>
+</div>
+<div>
+    <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Welcomeseite</a>
 </div>
 </body>
 </html>
