@@ -7,7 +7,7 @@
     <title>Themenübersicht</title>
 </head>
 <body>
-
+<h1>Hier ist eine Übersicht aller angelegten Themen</h1>
 <div >
   <div th:each="topic: ${topic}" >
     <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries|" th:text="${topic.name}" ></a>
@@ -27,15 +27,11 @@
     <tr>
       <th>ID:</th>
       <th>Themenname:</th>
-        <th>Datum:</th>
     </tr>
     <tr th:each="topic: ${topics}">
       <td th:text="${topic.getId()}">777</td>
       <td th:text="${topic.getName()}">Test</td>
-        <td th:text="${#temporals.format(topic.createdAt, 'EEEE, dd MMMM yyyy HH:mm')}"></td>
     </tr>
-
-
 </table>
 <button class="zurück" onclick="window.history.back()">Zurück</button>
 
