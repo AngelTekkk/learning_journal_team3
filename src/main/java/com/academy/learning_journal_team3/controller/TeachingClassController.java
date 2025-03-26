@@ -5,6 +5,7 @@ import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.model.TeachingclassModel;
 import com.academy.learning_journal_team3.service.TeachingClassService;
+import com.academy.learning_journal_team3.service.TeachingClassTopicService;
 import com.academy.learning_journal_team3.service.UserService;
 import com.academy.learning_journal_team3.service.TopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-
 
 @Controller
 public class TeachingClassController {
@@ -28,6 +28,8 @@ public class TeachingClassController {
     @Autowired
     private TopicsService topicsService;
 
+    @Autowired
+    private TeachingClassTopicService teachingClassTopicService;
 
     @PostMapping("/createTeachingClass")
     public String createTeachingClass(@ModelAttribute TeachingclassModel teachingClassModel, RedirectAttributes redirectAttributes){
@@ -42,7 +44,6 @@ public class TeachingClassController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/teachingClass";
         }
-
     }
 
     @GetMapping("/teachingClass")
@@ -63,7 +64,17 @@ public class TeachingClassController {
 
             List<Topic> availableTopics = topicsService.getTopicsNotInClass(id);
 
+            List<Topic> topicsInClass = topicsService.getTopicsInClass(id);
+
+            System.out.println(topicsInClass);
+
+            topicsInClass.forEach(topic -> {
+                System.out.println("Topic ID: " + topic.getId());
+                System.out.println("Related Topic ID: " + topic.getName());
+            });
+
             model.addAttribute("teachingClass", teachingClass);
+            model.addAttribute("topicsInClass", topicsInClass);
             model.addAttribute("allUsers", allUsers);
             model.addAttribute("availableUsers", availableUsers);
             model.addAttribute("allTopics", allTopics);
@@ -120,7 +131,7 @@ public class TeachingClassController {
     @PostMapping("/admin/teachingClass/{classId}/addTopic")
     public String addTopicToClass(@PathVariable Long classId, @RequestParam Long topicId, RedirectAttributes redirectAttributes) {
         try {
-            teachingClassService.addTopicToClass(classId, topicId);
+            teachingClassTopicService.addTeachingClassTopic(classId, topicId);
             redirectAttributes.addFlashAttribute("successMessage", "Thema erfolgreich zur Klasse hinzugefügt");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Fehler beim Hinzufügen des Themas: " + e.getMessage());

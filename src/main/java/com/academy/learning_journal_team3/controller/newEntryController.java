@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//@RequestMapping("/teachingClass/${teachingClass.id}/topics/${topic.id}/entries/newEntry")
 @Controller
 public class newEntryController {
     @Autowired
@@ -23,23 +22,19 @@ public class newEntryController {
     private UserService userService;
     @Autowired
     private TopicsRepository topicsRepository;
-    @Autowired
-    private TopicsService topicsService;
+
     @PostMapping("/newEntry")
     public String createNewEntry(
             Authentication authentication,
             @RequestParam(name="Entry", required=true) String formText,
             @RequestParam(name="Title", required=true) String formTitle,
-            @RequestParam(name="Topics", required=true) String formTopicName,
-            Model model){
-        model.addAttribute("topics",topicsService.getAllTopics());
+            @RequestParam(name="Topics", required=true) Long formTopicId
+            ){
         User user  = userService.findByEmail(authentication.getName());
-        Topic topic = topicsRepository.findByName(formTopicName);
+        Topic topic = topicsRepository.findById(formTopicId).get();
         Entry newEntry = Entry.builder().content(formText).title(formTitle).user(user).topic(topic).build();
         entryRepository.save(newEntry);
 
-        return "newEntry";
+        return "redirect:/newEntry";
     }
-
-
 }

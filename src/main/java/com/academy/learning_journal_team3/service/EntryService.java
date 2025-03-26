@@ -2,7 +2,10 @@ package com.academy.learning_journal_team3.service;
 
 import com.academy.learning_journal_team3.entity.Entry;
 import com.academy.learning_journal_team3.entity.Topic;
+import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.repository.EntryRepository;
+import com.academy.learning_journal_team3.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +17,21 @@ public class EntryService {
 
     @Autowired
     private EntryRepository entryRepository;
-
-
-
+    @Autowired
+    private UserRepository userRepository;
 
 
     public List<Entry> getAllEntries() {
         return entryRepository.findAll();
     }
 
-    public Optional<Entry> getEntryName(long entryId){
+    public Optional<Entry> getEntryById(long entryId){
         return entryRepository.findById(entryId);
     }
 
+    public void deleteEntry(Long entryId) {entryRepository.deleteById(entryId);}
 
+    public List<Entry> getEntryByUser(User user){
+        return entryRepository.findByUser(user);
+    }
 }

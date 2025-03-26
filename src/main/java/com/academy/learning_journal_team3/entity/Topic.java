@@ -6,7 +6,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Getter
 @Setter
 @Builder
@@ -23,18 +22,9 @@ public class Topic {
     @Column(name = "name")
     private String name;
 
-    @Column(name="created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    @ManyToMany(mappedBy = "topicList")
-    private List<TeachingClass> teachingClasses;
-
     @OneToMany(mappedBy = "topic")
     private List<Entry> entryList;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
-
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TeachingClassTopic> teachingClassTopics;
 }

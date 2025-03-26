@@ -5,15 +5,34 @@
     <title>Übersicht aller Einträge</title>
 </head>
 <body>
-<h1>Hier ist eine Übersicht aller Einträge für das Thema <span th:text="${topic.name}"></span></h1>
+<h1>Hier ist eine Übersicht aller Einträge</h1>
 <div>
-    <div th:each="entry: ${entries}">
-        <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries/${entry.id}|" th:text="${entry.title}">Eintrag 1</a>
-    </div>
-</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Eintrag</th>
+            <th>Aktionen</th>
+        </tr>
+        </thead>
 
+        <tbody>
+            <tr th:each="entry: ${entries}">
+               <td th:text="${entry.title}">Eintrag 1</td>
+
+        <td>
+        <a  id="editEntry" th:href="@{/newEntry/{id}(id=${entry.id})}" >Bearbeiten</a>
+
+            <form th:action="@{/entry/delete}" method="post"
+                  onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?');">
+                <input type="hidden" name="entryId" th:value="${entry.id}" />
+                <button type="submit" id="deleteEntry">Löschen</button>
+            </form></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div>
-    <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries/newEntry|">Neuen Eintrag erstellen</a>
+    <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>
 </div>
 </body>
 </html>

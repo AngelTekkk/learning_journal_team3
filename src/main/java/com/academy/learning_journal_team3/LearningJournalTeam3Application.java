@@ -1,6 +1,5 @@
 package com.academy.learning_journal_team3;
 
-import com.academy.learning_journal_team3.entity.Entry;
 import com.academy.learning_journal_team3.entity.TeachingClass;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
@@ -8,10 +7,12 @@ import com.academy.learning_journal_team3.repository.EntryRepository;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class LearningJournalTeam3Application {
@@ -21,11 +22,12 @@ public class LearningJournalTeam3Application {
 				run(LearningJournalTeam3Application.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner demo(TeachingClassRepository teachingClassRepository, UserRepository userRepository, TopicsRepository topicsRepository, EntryRepository entryRepository){
+//        @Bean
+//        public CommandLineRunner demo(TeachingClassRepository teachingClassRepository, UserRepository userRepository,
+//									  TopicsRepository topicsRepository, EntryRepository entryRepository, PasswordEncoder passwordEncoder) {
+//
 //		return (args) -> {
 //			System.out.println("Hallöchen");
-//
 //
 //			TeachingClass teachingClass1 = TeachingClass.builder().name("Schulklasse 1").build();
 //			TeachingClass teachingClass2 = TeachingClass.builder().name("Schulklasse 2").build();
@@ -34,16 +36,15 @@ public class LearningJournalTeam3Application {
 //			teachingClassRepository.save(teachingClass2);
 //			teachingClassRepository.save(teachingClass3);
 //
-//
-//			User user1 = User.builder().firstName("Markus").teachingClass(teachingClass1).build();  // builder erstetzt die hartgecodete Variante mit der erstellung der Liste
+//			User user1 = User.builder().firstName("Andrey").lastName("Makarov").email("am@am.com")
+//					.password(passwordEncoder.encode("123456Am")).role("ADMIN").build();
 //			userRepository.save(user1);
-//			User user2 = User.builder().firstName("Lisa").teachingClass(teachingClass1).build();
+//			User user2 = User.builder().firstName("Franziska").lastName("Seidl").email("fs@fs.com")
+//					.password(passwordEncoder.encode("123456Fs")).role("USER").build();
 //			userRepository.save(user2);
-//			User user3 = User.builder().firstName("Verona").teachingClass(teachingClass2).build();
+//			User user3 = User.builder().firstName("Verena").lastName("Nowak").email("vn@vn.com")
+//					.password(passwordEncoder.encode("123456Vn")).role("USER").build();
 //			userRepository.save(user3);
-//			User user4 = User.builder().firstName("Paul").teachingClass(teachingClass3).build();
-//			userRepository.save(user4);
-//
 //
 //			Topic topic1 = Topic.builder().name("SQL").build();
 //			Topic topic2 = Topic.builder().name("Java").build();

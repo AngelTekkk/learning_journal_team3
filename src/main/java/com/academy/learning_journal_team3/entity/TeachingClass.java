@@ -25,15 +25,26 @@ public class TeachingClass {
     @OneToMany(mappedBy = "teachingClass")
     private List<User> userList;
 
-    @Column(name="created_at", updatable = false)
-    private LocalDateTime createdAt;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "teachingClass_topic",
+//            joinColumns = @JoinColumn(name = "teachingClass_id"),
+//            inverseJoinColumns = @JoinColumn(name = "topic_id"),
+//            uniqueConstraints = @UniqueConstraint(columnNames = {"teaching_class_id", "topic_id"}),
+//            indexes = @Index(columnList = "added_at")
+//    )
+//    @MapKeyColumn(name = "added_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+//    private List<Topic> topicList;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "teachingClass_topic",
-            joinColumns = @JoinColumn(name = "teachingClass_id"),
-            inverseJoinColumns = @JoinColumn(name = "topic_id")
-    )
-    private List<Topic> topicList;
+    @OneToMany(mappedBy = "teachingClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TeachingClassTopic> teachingClassTopics;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "teachingClass_topic",
+//            joinColumns = @JoinColumn(name = "teachingClass_id"),
+//            inverseJoinColumns = @JoinColumn(name = "topic_id")
+//    )
+//    private List<Topic> topicList;
 }
