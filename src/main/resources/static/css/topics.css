@@ -38,10 +38,7 @@ h2{
 }
 
 form {
-    background-color: #ffffff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 label{
@@ -75,6 +72,12 @@ button.zurück{
     width: 200px;
     max-width: 50%;
     display: inline-block;
+    background-color: DarkSeaGreen ;
+}
+button.speichern{
+    width: 200px;
+    max-width: 50%;
+    display: inline-block;
 }
 button:hover {
     background-color: CadetBlue ;
@@ -87,4 +90,70 @@ th, td {
 }
 th {
     background-color: #ecf0f1;
+}
+h1.headerBox{
+        background-color: #6c7a89;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        width: 90%;
+        margin: 0 auto;
+        font-size: 24px;
+        font-weight: bold;
+    }
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.box {
+    background: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+.zurück {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: lightgreen;
+    border: none;
+    cursor: pointer;
+}
+.success-message {
+    display: block; /* Sicherstellen, dass es unter dem Button steht */
+    color: green; /* Erfolgsfarbe */
+    font-size: 16px; /* Bessere Lesbarkeit */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px; /* Abstand nach oben */
+    padding: 10px;
+    width: 80%; /* Breite begrenzen */
+    margin-left: auto;
+    margin-right: auto;
+}
+.error-message {
+    display: block; /* Sicherstellen, dass es unter dem Button steht */
+    color: green; /* Erfolgsfarbe */
+    font-size: 16px; /* Bessere Lesbarkeit */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px; /* Abstand nach oben */
+    padding: 10px;
+    width: 80%; /* Breite begrenzen */
+    margin-left: auto;
+    margin-right: auto;
 }
