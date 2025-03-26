@@ -1,6 +1,7 @@
 package com.academy.learning_journal_team3.service;
 
 import com.academy.learning_journal_team3.entity.TeachingClass;
+import com.academy.learning_journal_team3.entity.TeachingClassTopic;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.model.TopicsModel;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
@@ -19,10 +20,6 @@ import java.util.stream.Collectors;
 @Service
 public class TopicsService {
 
-    public Long createTopics(TopicsModel topicsModel) {
-    return 1L;
-    }
-
     @Autowired
     private TopicsRepository topicsRepository;
 
@@ -32,10 +29,6 @@ public class TopicsService {
     public List<Topic> getAllTopics () {
         return topicsRepository.findAll();
     }
-
-//    public Optional<Topic> getTopic (Long topicId){
-//        return topicsRepository.findById(topicId);
-//    }
 
     public Topic getTopic(Long topicId) {
         return topicsRepository.findById(topicId)
@@ -59,22 +52,31 @@ public class TopicsService {
         TeachingClass teachingClass = teachingClassRepository.findById(classId)
                 .orElseThrow(() -> new NoSuchElementException("Klassenzimmer mit ID " + classId + " nicht gefunden"));
 
-        List<Topic> classTopics = teachingClass.getTopicList();
+        List<TeachingClassTopic> classTopics = teachingClass.getTeachingClassTopics();
+
+//        return topicsRepository.findAll().stream()
+//                .filter(topic -> !classTopics.contains(topic))
+//                .collect(Collectors.toList());
 
         return topicsRepository.findAll().stream()
-                .filter(topic -> !classTopics.contains(topic))
+                .filter(topic -> classTopics.stream()
+                        .noneMatch(classTopic -> classTopic.getTopic().equals(topic)))
                 .collect(Collectors.toList());
     }
 
-    @Transactional
-    public void deleteTopic(Long topicId) {
-        Topic topic = getTopic(topicId);
+    public List<Topic> getTopicsInClass(Long classId) {
+        TeachingClass teachingClass = teachingClassRepository.findById(classId)
+                .orElseThrow(() -> new NoSuchElementException("Klassenzimmer mit ID " + classId + " nicht gefunden"));
 
-        for (TeachingClass teachingClass : topic.getTeachingClasses()) {
-            teachingClass.getTopicList().remove(topic);
-            teachingClassRepository.save(teachingClass);
-        }
+        List<TeachingClassTopic> classTopics = teachingClass.getTeachingClassTopics();
 
-        topicsRepository.deleteById(topicId);
+//        return topicsRepository.findAll().stream()
+//                .filter(topic -> classTopics.contains(topic))
+//                .collect(Collectors.toList());
+
+        return topicsRepository.findAll().stream()
+                .filter(topic -> classTopics.stream()
+                        .anyMatch(classTopic -> classTopic.getTopic().equals(topic)))
+                .collect(Collectors.toList());
     }
 }

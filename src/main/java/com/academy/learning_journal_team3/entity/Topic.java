@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.util.List;
 
-
 @Getter
 @Setter
 @Builder
@@ -22,9 +21,9 @@ public class Topic {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "topicList")
-    private List<TeachingClass> teachingClasses;
-
     @OneToMany(mappedBy = "topic")
     private List<Entry> entryList;
+
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TeachingClassTopic> teachingClassTopics;
 }

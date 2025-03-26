@@ -1,9 +1,11 @@
 package com.academy.learning_journal_team3.service;
 import com.academy.learning_journal_team3.entity.TeachingClass;
+import com.academy.learning_journal_team3.entity.TeachingClassTopic;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.model.TeachingclassModel;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
+import com.academy.learning_journal_team3.repository.TeachingClassTopicRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class TeachingClassService {
 
     @Autowired
     private TeachingClassRepository teachingClassRepository;
+
+    @Autowired
+    private TeachingClassTopicRepository teachingClassTopicRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -67,7 +72,7 @@ public class TeachingClassService {
             }
         }
 
-        teachingClass.getTopicList().clear();
+        teachingClass.getTeachingClassTopics().clear();
         teachingClassRepository.save(teachingClass);
 
         teachingClassRepository.deleteById(teachingClassId);
@@ -98,10 +103,14 @@ public class TeachingClassService {
         Topic topic = topicsRepository.findById(topicId)
                 .orElseThrow(() -> new NoSuchElementException("Thema mit ID " + topicId + " nicht gefunden"));
 
-        if (!teachingClass.getTopicList().contains(topic)) {
-            teachingClass.getTopicList().add(topic);
+        if (teachingClass.getTeachingClassTopics().stream()
+                .noneMatch(tcTopic -> tcTopic.getTopic().equals(topic))) {
+            teachingClass.getTeachingClassTopics()
+                    .add(new TeachingClassTopic(teachingClass, topic));
+
             teachingClassRepository.save(teachingClass);
         }
+
     }
 
     @Transactional
@@ -110,7 +119,13 @@ public class TeachingClassService {
         Topic topic = topicsRepository.findById(topicId)
                 .orElseThrow(() -> new NoSuchElementException("Thema mit ID " + topicId + " nicht gefunden"));
 
-        teachingClass.getTopicList().remove(topic);
+        TeachingClassTopic teachingClassTopic = teachingClass.getTeachingClassTopics()
+                .stream()
+                .filter(tcTopic -> tcTopic.getTopic().equals(topic))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("TeachingClassTopic не найден для Topic ID: " + topicId));
+
+        teachingClass.getTeachingClassTopics().remove(teachingClassTopic);
         teachingClassRepository.save(teachingClass);
     }
 }
