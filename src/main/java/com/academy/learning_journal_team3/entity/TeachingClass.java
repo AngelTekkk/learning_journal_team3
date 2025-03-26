@@ -3,7 +3,6 @@ package com.academy.learning_journal_team3.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
