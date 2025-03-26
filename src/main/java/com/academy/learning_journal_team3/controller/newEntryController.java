@@ -23,7 +23,6 @@ public class newEntryController {
     @Autowired
     private TopicsRepository topicsRepository;
 
-
     @PostMapping("/newEntry")
     public String createNewEntry(
             Authentication authentication,
@@ -38,6 +37,4 @@ public class newEntryController {
 
         return "redirect:/newEntry";
     }
-
-
 }

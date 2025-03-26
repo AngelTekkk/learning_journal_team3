@@ -2,8 +2,6 @@ package com.academy.learning_journal_team3.controller;
 
 
 import com.academy.learning_journal_team3.entity.Entry;
-
-
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import com.academy.learning_journal_team3.service.EntryService;
@@ -37,14 +35,6 @@ public class EntryController {
     @Autowired
     private UserRepository userRepository;
 
-//    @GetMapping("/entries")
-//    public String getEntries(Model model, @PathVariable(name="topicId") Long topicID, @PathVariable(name="teachingClassId") Long teachingClassID) {
-//        model.addAttribute("entries", entryService.getAllEntries());
-//        model.addAttribute("topic", topicsService.getTopic(topicID).get());
-//        model.addAttribute("teachingClass", teachingClassService.getTeachingClass(teachingClassID));
-//        return "entries";
-//    }
-
     @GetMapping("/entries")
     public String getEntries(Model model, Authentication authentication) {
         String username = authentication.getName();
@@ -53,8 +43,6 @@ public class EntryController {
         model.addAttribute("entries", entries);
         return "entries";
     }
-
-
 
     @PostMapping("/entry/delete")
     public String deleteEntry(@RequestParam Long entryId, Authentication authentication) {
@@ -67,8 +55,6 @@ public class EntryController {
         }
     }
 
-
-
     @GetMapping("/newEntry/{id}")
     public String showEntryForUpdate(Model model, @PathVariable Long id) {
         Entry entry = entryService.getEntryById(id).get();
@@ -77,20 +63,13 @@ public class EntryController {
         return "newEntry";
     }
 
-//    @PostMapping("/newEntry")
-//    public String saveUpdatedEntry(@ModelAttribute Entry entry) {
-//
-//        return "redirect:/entries";
-//    }
-
-
-
     @GetMapping("/newEntry")
     public String getNewEntry(Model model) {
         model.addAttribute("topics",topicsService.getAllTopics());
         model.addAttribute("entry", new Entry());
         return "newEntry";
     }
+
 }
 
 
