@@ -7,24 +7,21 @@
     <title>Texteintrag</title>
 </head>
 <body>
-<h1>Erstelle einen neuen Eintrag</h1>
+<h1 th:text="${entry.id == null ? 'Erstelle einen neuen Eintrag' : 'Bearbeite den Eintrag'}"></h1>
 
 <form action="/newEntry" method="post">
     <div>
         <label for="Topic">Wählen Sie ein Thema zu welchem der Eintrag gehört</label><br>
         <select name="Topics" id="topic">
-<!--        <option value="Java">Java</option>-->
-<!--        <option value="SQL">SQL</option>-->
-<!--        <option value="Hardware">Hardware</option>-->
-<!--        <option value="SoftwareEngineering ">Software Engineering</option>-->
             <option th:each="topic : ${topics}"
                     th:value="${topic.id}"
                     th:text="${topic.name}"></option>
+                    th:selected="${entry.topic != null and entry.topic.id == topic.id}"></option> // FIXME: hier muss noch geschaut werden dass das entsprechende Topic angezeigt wird
         </select>
     </div>
-    <textarea id="newTitle" name="Title" rows="1" cols="60" placeholder="Titel"></textarea>
+    <textarea id="newTitle" name="Title" rows="1" cols="60" placeholder="Titel" th:text="${entry.title}"></textarea>
     <br>
-    <textarea id="newEntry" name="Entry" rows="20" cols="80" maxlength="1000"></textarea>
+    <textarea id="newEntry" name="Entry" rows="20" cols="80" maxlength="1000" th:text="${entry.content}"></textarea>
     <br>
     <button type="submit">Speichern</button>
     <p>Klicke Speichern und dein Text wird in der Datenbank gespeichert</p>
