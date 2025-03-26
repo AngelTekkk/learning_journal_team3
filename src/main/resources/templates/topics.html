@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,6 @@
 </head>
 <body>
 <h1>Hier ist eine Übersicht aller angelegten Themen</h1>
-
 <div >
   <div th:each="topic: ${topic}" >
     <a th:href="|/teachingClass/${teachingClass.id}/topics/${topic.id}/entries|" th:text="${topic.name}" ></a>
@@ -23,7 +22,7 @@
   <input type="hidden" id="successMessage" name="successMessage" th:value="${successMessage}">
   <input type="hidden" id="errorMessage" name="errorMessage" th:value="${errorMessage}">
 </form>
-<hr2>Liste aller Themen</hr2>
+<h2>Liste aller Themen</h2>
 <table>
     <tr>
       <th>ID:</th>
@@ -32,8 +31,9 @@
     <tr th:each="topic: ${topics}">
       <td th:text="${topic.getId()}">777</td>
       <td th:text="${topic.getName()}">Test</td>
-
     </tr>
 </table>
+<button class="zurück" onclick="window.history.back()">Zurück</button>
+
 </body>
 </html>

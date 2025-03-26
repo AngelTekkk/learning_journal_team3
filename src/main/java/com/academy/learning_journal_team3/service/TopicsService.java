@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class TopicsService {
-
     @Autowired
     private TopicsRepository topicsRepository;
 
