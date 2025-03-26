@@ -9,10 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.View;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -22,23 +20,12 @@ public class UserController {
 
     @GetMapping("/registration")
     public String registrationPage(Authentication authentication, Model model,
-            @RequestParam(name = "error", defaultValue = "") String error) {
+                                   @RequestParam(name = "error", defaultValue = "") String error) {
         boolean isUsers = !userService.getAllUsers().isEmpty();
         model.addAttribute("isUsers", isUsers);
         model.addAttribute("error",error);
 
         if (authentication != null) {
-            boolean isAdmin = authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            boolean adminMode = Boolean.parseBoolean(model.getAttribute("adminMode") != null ?
-                    Objects.requireNonNull(model.getAttribute("adminMode")).toString() : "false");
-
-            if (isAdmin && adminMode) {
-                model.addAttribute("user", new User());
-                model.addAttribute("editMode", false);
-                model.addAttribute("adminCreation", true);
-                return "registration";
-            }
-
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             User currentUser = userService.findByEmail(userDetails.getUsername());
             model.addAttribute("user", currentUser);
@@ -123,7 +110,6 @@ public class UserController {
         return "redirect:/error";
     }
 
-    // Admin user management
     @GetMapping("/admin/users")
     public String userManagement(Model model) {
         List<User> users = userService.getAllUsers();
@@ -144,9 +130,9 @@ public class UserController {
         User user = userService.getUserById(id);
         if (user != null) {
             model.addAttribute("user", user);
+            model.addAttribute("adminCreation", false);
             model.addAttribute("editMode", true);
-            model.addAttribute("adminEdit", true);
-            return "admin/edit-user";
+            return "registration";
         }
         return "redirect:/admin/users";
     }
