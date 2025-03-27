@@ -33,24 +33,30 @@
     <table>
         <thead>
         <tr>
-            <th>Eintrag</th>
+            <th>Titel</th>
+            <th>Inhalt</th>
+            <th>Thema</th>
+            <th>Datum</th>
             <th>Aktionen</th>
         </tr>
         </thead>
 
         <tbody>
-            <tr th:each="entry: ${entries}">
-               <td th:text="${entry.title}">Eintrag 1</td>
-
-        <td>
-        <a  id="editEntry" th:href="@{/newEntry/{id}(id=${entry.id})}" >Bearbeiten</a>
-
-            <form th:action="@{/entry/delete}" method="post"
-                  onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?');">
-                <input type="hidden" name="entryId" th:value="${entry.id}" />
-                <a id="deleteButton"><button type="submit" id="deleteEntry">Löschen</button></a>
-            </form></td>
-            </tr>
+        <tr th:each="entry: ${entries}">
+            <td th:text="${entry.title}">Titel</td>
+            <td th:text="${entry.content}">Inhalt</td>
+            <td th:text="${entry.topic.name}">Thema</td>
+            <td th:text="${#temporals.format(entry.date, 'yyyy-MM-dd')}">Datum</td>
+            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')} or
+            ( ${#authorization.expression('hasRole(''USER'')')} and ${userId} == ${entry.user.id})">
+                <a th:href="@{/newEntry/{id}(id=${entry.id})}" >Bearbeiten</a>
+                <form th:action="@{/entry/delete}" method="post"
+                      onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?');">
+                    <input type="hidden" name="entryId" th:value="${entry.id}" />
+                    <button type="submit">Löschen</button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
