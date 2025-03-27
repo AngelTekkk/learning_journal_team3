@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/newEntry.css">
+
     <title>Texteintrag</title>
 </head>
 <body>
@@ -25,10 +27,12 @@
     <br>
     <input type="hidden" name="EntryId" th:value="${entry.id}"/>
     <button type="submit">Speichern</button>
+    <br><br>
+    <button th:href="@{/entries}" class="btn btn-primary">Zur Übersicht</button>
     <p>Klicke Speichern und dein Text wird in der Datenbank gespeichert</p>
 </form>
 <div>
-    <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Welcomeseite</a>
+
 </div>
 
 </body>

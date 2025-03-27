@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/entries.css">
     <title>Übersicht aller Einträge</title>
 </head>
 <body>
@@ -60,9 +62,9 @@
 </div>
 <div>
     <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>
+    <a th:href="@{/welcome}">Zurück zur Startseite</a>
 </div>
 <div>
-    <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Welcomeseite</a>
 </div>
 </body>
 </html>

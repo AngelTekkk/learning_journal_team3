@@ -15,7 +15,7 @@
     </div>
 
     <div sec:authorize="hasRole('ADMIN')">
-        <h1>Neues Klassenzimmer erstellen</h1>
+        <h2>Neues Klassenzimmer erstellen</h2>
         <form id="classroomForm" action="/createTeachingClass" method="post">
             <label for="name">Name des Klassenzimmers:</label>
             <input type="text" id="name" name="name" required><br>
@@ -42,10 +42,13 @@
                           onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Klassenzimmer löschen möchten?');">
                         <input type="hidden" name="userId" th:value="${teachingClass.id}" />
                         <button id="deleteButton"type="submit" class="btn btn-sm btn-danger">Löschen</button>
+
                     </form>
                 </td>
             </tr>
         </table>
+        <br><br>
+        <button class="zurück" onclick="window.location.href='http://localhost:8081/welcome'">Zurück zur Startseite</button>
     </div>
 
 </body>
