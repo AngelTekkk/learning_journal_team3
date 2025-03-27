@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/entries.css">
     <title>Übersicht aller Einträge</title>
 </head>
 <body>
@@ -46,7 +48,7 @@
             <form th:action="@{/entry/delete}" method="post"
                   onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?');">
                 <input type="hidden" name="entryId" th:value="${entry.id}" />
-                <button type="submit" id="deleteEntry">Löschen</button>
+                <a id="deleteButton"><button type="submit" id="deleteEntry">Löschen</button></a>
             </form></td>
             </tr>
         </tbody>
@@ -54,6 +56,7 @@
 </div>
 <div>
     <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>
+    <a th:href="@{/welcome}">Zurück zur Startseite</a>
 </div>
 <div>
     <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Welcomeseite</a>
