@@ -37,14 +37,11 @@ public class newEntryController {
             updateEntry.setTitle(formTitle);
             updateEntry.setTopic(topic);
             updateEntry.setContent(formText);
-            updateEntry.setUser(user);
             entryRepository.save(updateEntry);
-
         }else {
             Entry newEntry = Entry.builder().content(formText).title(formTitle).user(user).topic(topic).build();
             entryRepository.save(newEntry);
         }
-
         return "redirect:/entries";
     }
 }

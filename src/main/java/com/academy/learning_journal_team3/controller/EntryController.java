@@ -1,40 +1,26 @@
 package com.academy.learning_journal_team3.controller;
-
-
 import com.academy.learning_journal_team3.entity.Entry;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.repository.EntryRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import com.academy.learning_journal_team3.service.EntryService;
-import com.academy.learning_journal_team3.service.TeachingClassService;
 import com.academy.learning_journal_team3.service.TopicsService;
-import com.academy.learning_journal_team3.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-//@RequestMapping("/teachingClass/{teachingClassId}/topics/{topicId}/entries")
 @Controller
 public class EntryController {
 
     @Autowired
     private EntryService entryService;
-
     @Autowired
     private TopicsService topicsService;
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TeachingClassService teachingClassService;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -49,7 +35,8 @@ public class EntryController {
         model.addAttribute("topics",topicsService.getAllTopics());
         List<Entry> entries;
         if("me".equals(personType) && topicType != null) {
-            entries = entryService.getEntryByUser(user).stream().filter(e -> topicType.equals(e.getTopic())).collect(Collectors.toList());
+            entries = entryService.getEntryByUser(user).stream()
+                    .filter(e -> topicType.equals(e.getTopic())).collect(Collectors.toList());
 
         }else if("me".equals(personType) && topicType == null) {
            entries = entryService.getEntryByUser(user);
@@ -59,19 +46,15 @@ public class EntryController {
         }else{
             entries = entryService.getAllEntries();
         }
+        model.addAttribute("userId", user.getId());
         model.addAttribute("entries", entries);
         return "entries";
     }
 
     @PostMapping("/entry/delete")
-    public String deleteEntry(@RequestParam Long entryId, Authentication authentication) {
-        Entry entry = entryService.getEntryById(entryId).get();
-        if (entry.getUser().getEmail().equals(authentication.getName())) {
-            entryService.deleteEntry(entryId);
-            return "redirect:/entries";
-        } else {
-            return "error";
-        }
+    public String deleteEntry(@RequestParam Long entryId) {
+        entryService.deleteEntry(entryId);
+        return "redirect:/entries";
     }
 
     @GetMapping("/newEntry/{id}")
@@ -80,8 +63,8 @@ public class EntryController {
         model.addAttribute("entry", entry);
         model.addAttribute("topics", topicsService.getAllTopics());
         return "newEntry";
-    }
 
+    }
 
     @GetMapping("/newEntry")
     public String getNewEntry(Model model) {
