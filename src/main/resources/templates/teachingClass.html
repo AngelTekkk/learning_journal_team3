@@ -19,7 +19,7 @@
         <form id="classroomForm" action="/createTeachingClass" method="post">
             <label for="name">Name des Klassenzimmers:</label>
             <input type="text" id="name" name="name" required><br>
-            <button id="submit" type="submit">Klassenzimmer erstellen</button>
+            <button id="editButton" type="submit">Klassenzimmer erstellen</button>
             <span type="text" th:text ="${successMessage} ? ${successMessage} : ${errorMessage}"></span>
             <input type="hidden" id="successMessage" th:value="${successMessage}">
             <input type="hidden" id="errorMessage" th:value="${errorMessage}">
@@ -41,14 +41,13 @@
                     <form th:action="@{/teachingClass/delete}" method="post" style="display: inline;"
                           onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Klassenzimmer löschen möchten?');">
                         <input type="hidden" name="userId" th:value="${teachingClass.id}" />
-                        <button id="deleteButton"type="submit" class="btn btn-sm btn-danger">Löschen</button>
-
+                        <button id="deleteButton" type="submit" class="btn btn-sm btn-danger">Löschen</button>
                     </form>
                 </td>
             </tr>
         </table>
         <br><br>
-        <button class="zurück" onclick="window.location.href='http://localhost:8081/welcome'">Zurück zur Startseite</button>
+        <a th:href="@{/welcome}" class="btn btn-primary">Zurück zur Startseite</a>
     </div>
 
 </body>
