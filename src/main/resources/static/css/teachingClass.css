@@ -1,122 +1,3 @@
-/*body{*/
-/*background-color: Gainsboro;*/
-/*font-family: Trebuchet MS, sans-serif;*/
-/*text-align: center;*/
-/*display: grid;*/
-/*place-items: center;*/
-/*}*/
-
-/*h1{*/
-/*margin-top: 5%;*/
-/*background-color: LightSlateGrey;*/
-/*color: white;*/
-/*padding: 2%;*/
-/*width: 100%;*/
-/*}*/
-
-/*.container {*/
-/*  display: grid;*/
-/*  place-items: center;*/
-/*}*/
-/*table {*/
-/*  margin: 30px;*/
-/*}*/
-/*a {*/
-/*  display: block;*/
-/*  padding: 5px;*/
-/*  margin: 10px 0;*/
-/*  text-decoration: none;*/
-/*  color: LightSlateGrey;*/
-/*  background-color: #ffffff;*/
-/*  font-size: 18px;*/
-/*  border-radius: 5px;*/
-/*  text-align: center;*/
-/*  transition: all 0.3s ease;*/
-/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*a:hover {*/
-/*background-color: DarkSeaGreen;*/
-/*}*/
-
-/*h2{*/
-/*color: LightSlateGrey;*/
-/*}*/
-
-/*form {*/
-/*  background-color: #ffffff;*/
-/*  padding: 20px;*/
-/*  border-radius: 8px;*/
-/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*}*/
-
-/*label{*/
-/*display: block;*/
-/*color: LightSlateGrey;*/
-/*font-size: 16px;*/
-/*}*/
-
-/*input[type="text"] {*/
-/*  width: 70%;*/
-/*  padding: 7px;*/
-/*  border: 1px solid darkgrey;*/
-/*  border-radius: 5px;*/
-/*  background-color: white;*/
-/*  color: black;*/
-/*  margin-bottom: 20px;*/
-/*}*/
-
-/*#deleteButton, #editButton {*/
-/*  width: 80px;*/
-/*  margin: 10px;*/
-/*  padding:5px;*/
-/*  background-color: LightSlateGrey ;*/
-/*  color: white;*/
-/*  border: none;*/
-/*  border-radius: 5px;*/
-/*  cursor: pointer;*/
-/*  transition: background-color 0.3s ease;*/
-/*  font-family: Ubuntu-Bold, sans-serif;*/
-/*  font-size: 10px;*/
-/*  text-decoration: none;*/
-/*}*/
-/*#deleteButton:hover, #editButton:hover {*/
-/*  background-color: darkseagreen ;*/
-/*}*/
-/*.mt-3 a, .mb-3 a {*/
-/*  text-decoration: none;*/
-/*  color: white;*/
-/*}*/
-/*.mt-3, .mb-3 {*/
-/*  width: 150px;*/
-/*  padding: 7px;*/
-/*  background-color: DarkSeaGreen ;*/
-/*  border: none;*/
-/*  border-radius: 5px;*/
-/*  font-size: 16px;*/
-/*  cursor: pointer;*/
-/*  transition: background-color 0.3s ease;*/
-/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*}*/
-/*.mt-3:hover, .mb-3:hover {*/
-/*  background-color: CadetBlue ;*/
-/*}*/
-
-/*button:hover {*/
-/*  background-color: CadetBlue ;*/
-/*}*/
-
-/*th, td {*/
-/*  color: LightSlateGrey;*/
-/*  padding: 8px 12px;*/
-/*  border: 1px solid #ccc;*/
-/*}*/
-/*th {*/
-/*  background-color: #ecf0f1;*/
-/*}*/
-
-
 body{
   background-color: Gainsboro;
   font-family: Trebuchet MS, sans-serif;
@@ -131,15 +12,15 @@ h1{
   color: white;
   padding: 2%;
   width: 100%;
-
 }
 a {
+  width: 50%;
   display: block;
   padding: 5px;
   margin: 10px 0;
   text-decoration: none;
-  color: LightSlateGrey;
-  background-color: #ffffff;
+  color: white;
+  background-color: DarkSeaGreen;
   font-size: 18px;
   border-radius: 5px;
   text-align: center;
@@ -149,16 +30,14 @@ a {
 }
 
 a:hover {
-  background-color: DarkSeaGreen;
+  background-color: CadetBlue;
 }
 
 .container{
   display: grid;
   place-items: center;
 }
-table {
-  margin: 30px;
-}
+
 th, td {
   color: LightSlateGrey;
   padding: 8px 12px;
@@ -204,4 +83,21 @@ th {
 .mt-3:hover, .mb-3:hover {
   background-color: CadetBlue ;
 }
-
+.classroom{
+  display: grid;
+  justify-items: center;
+}
+.teilnehmen{
+  width: 100px;
+  margin: 10px;
+  padding:5px;
+  background-color: LightSlateGrey ;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Ubuntu-Bold, sans-serif;
+  font-size: 10px;
+  text-decoration: none;
+}
