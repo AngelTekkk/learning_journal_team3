@@ -13,39 +13,46 @@ h1{
     padding: 2%;
     width: 100%;
 }
+#deleteButton, #editButton {
+    width: 80px;
+    margin: 10px;
+    padding:5px;
+    background-color: LightSlateGrey ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: Ubuntu-Bold, sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+}
+#deleteButton:hover, #editButton:hover {
+    background-color: darkseagreen ;
+}
 
-a {
+a{
     display: block;
     padding: 5px;
-    margin: 10px 0;
+    margin: 10px;
     text-decoration: none;
-    color: LightSlateGrey;
-    background-color: #ffffff;
-    font-size: 18px;
+    color: white;
+    background-color: DarkSeaGreen;
+    font-size: 16px;
     border-radius: 5px;
     text-align: center;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
-
 a:hover {
-    background-color: DarkSeaGreen;
+    background-color: CadetBlue;
 }
 
-h2{
-    color: LightSlateGrey;
+p{
+    color: black;
 }
-
-/*form {*/
-/*    background-color: #ffffff;*/
-/*    padding: 20px;*/
-/*    border-radius: 8px;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*}*/
-
 label{
-    display: block;
     color: LightSlateGrey;
     font-size: 16px;
 }
@@ -59,72 +66,35 @@ input[type="text"] {
     color: black;
     margin-bottom: 20px;
 }
-/*button {*/
-/*    display: block;*/
-/*    padding: 5px;*/
-/*    margin: 10px 0;*/
-/*    text-decoration: none;*/
-/*    color: LightSlateGrey;*/
-/*    background-color: #ffffff;*/
-/*    font-size: 18px;*/
-/*    border-radius: 5px;*/
-/*    text-align: center;*/
-/*    transition: all 0.3s ease;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*    cursor: pointer;*/
-/*}*/
-    /*button {*/
-    /*    width: 60%;*/
-    /*    padding: 7px;*/
-    /*    background-color: DarkSeaGreen ;*/
-    /*    color: white;*/
-    /*    border: none;*/
-    /*    border-radius: 5px;*/
-    /*    font-size: 16px;*/
-    /*    cursor: pointer;*/
-    /*    transition: background-color 0.3s ease;*/
-    /*}*/
-    /*button.zurück{*/
-    /*    width: 200px;*/
-    /*    max-width: 50%;*/
-    /*    display: inline-block;*/
-    /*}*/
 
-    /*button.speichern{*/
-    /*    width: 200px;*/
-    /*    max-width: 50%;*/
-    /*    display: inline-block;*/
-    /*}*/
-    /*button.löschen{*/
-    /*    width: 200px;*/
-    /*    max-width: 50%;*/
-    /*}*/
-    /*button:hover {*/
-    /*    background-color: CadetBlue ;*/
-    /*}*/
+th, td {
+    color: LightSlateGrey;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
+th {
+    background-color: #ecf0f1;
+    }
 
-    th, td {
-        color: LightSlateGrey;
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-    }
-    th {
-        background-color: #ecf0f1;
-    }
-    /*#deleteButton, #editButton {*/
-    /*    width: 80px;*/
-    /*    margin: 10px;*/
-    /*    padding:5px;*/
-    /*    background-color: LightSlateGrey ;*/
-    /*    color: white;*/
-    /*    border: none;*/
-    /*    border-radius: 5px;*/
-    /*    cursor: pointer;*/
-    /*    transition: background-color 0.3s ease;*/
-    /*    font-family: Ubuntu-Bold, sans-serif;*/
-    /*    font-size: 10px;*/
-    /*    text-decoration: none;*/
-    /*}*/
-    /*#deleteButton:hover, #editButton:hover {*/
-    /*    background-color: darkseagreen ;*/
-    /*}*/
+
+.filter {
+    display: inline-block;
+    justify-content: left;
+    gap: 20px;
+    flex-wrap: nowrap;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 20px;
+}
+.filter label {
+    margin-right: 10px;
+}
+
+.filter select {
+    padding: 5px;
+}
+
+.filter button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
