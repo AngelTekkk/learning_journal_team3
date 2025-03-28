@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "teachingClass_topic", uniqueConstraints = {
+@Table(name = "teaching_class_topic", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"teaching_class_id", "topic_id"})
 })
 public class TeachingClassTopic {
@@ -30,9 +30,6 @@ public class TeachingClassTopic {
 
     @Column(name = "added_at", nullable = false, updatable = false)
     private LocalDateTime addedAt;
-
-    public TeachingClassTopic(TeachingClass teachingClass, Topic topic) {
-    }
 
     @PrePersist
     protected void onCreate() {

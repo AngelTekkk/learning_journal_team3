@@ -3,7 +3,7 @@ package com.academy.learning_journal_team3.service;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,8 +29,9 @@ public class PasswordResetService {
     private static final int PASSWORD_LENGTH = 12;
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    @Value("${app.base-url}")
-    private String baseUrl;
+//    @Value("${app.base-url}")
+//    private String baseUrl;
+
     @Autowired
     private UserRepository userRepository;
 

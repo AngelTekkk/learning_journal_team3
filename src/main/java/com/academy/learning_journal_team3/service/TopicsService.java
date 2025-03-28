@@ -8,13 +8,9 @@ import com.academy.learning_journal_team3.repository.TeachingClassRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,11 +23,6 @@ public class TopicsService {
 
     public List<Topic> getAllTopics () {
         return topicsRepository.findAll();
-    }
-
-    public Topic getTopic(Long topicId) {
-        return topicsRepository.findById(topicId)
-                .orElseThrow(() -> new NoSuchElementException("Thema mit ID " + topicId + " nicht gefunden"));
     }
 
     public Long createTopic (TopicsModel topicsModel){

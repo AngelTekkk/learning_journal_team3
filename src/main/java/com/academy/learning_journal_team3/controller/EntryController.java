@@ -38,7 +38,7 @@ public class EntryController {
             entries = entryService.getEntryByUser(user).stream()
                     .filter(e -> topicType.equals(e.getTopic())).collect(Collectors.toList());
 
-        }else if("me".equals(personType) && topicType == null) {
+        }else if("me".equals(personType)) {
            entries = entryService.getEntryByUser(user);
 
         }else if(topicType != null) {

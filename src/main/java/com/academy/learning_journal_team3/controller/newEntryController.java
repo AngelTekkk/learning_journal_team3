@@ -24,9 +24,9 @@ public class newEntryController {
     @PostMapping("/newEntry")
     public String createOrUpdateNewEntry(
             Authentication authentication,
-            @RequestParam(name="Entry", required=true) String formText,
-            @RequestParam(name="Title", required=true) String formTitle,
-            @RequestParam(name="Topics", required=true) Long formTopicId,
+            @RequestParam(name="Entry") String formText,
+            @RequestParam(name="Title") String formTitle,
+            @RequestParam(name="Topics") Long formTopicId,
             @RequestParam(name="EntryId", required=false) Long formEntryId
             ){
         User user  = userService.findByEmail(authentication.getName());

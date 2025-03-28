@@ -109,6 +109,12 @@ public class TeachingClassController {
         return "redirect:/teachingClass";
     }
 
+    @PostMapping("/admin/teachingClass/distribute")
+    public String distributeTopics() {
+        teachingClassTopicService.distributeTopicsLastThursdayOfMonth();
+        return "redirect:/teachingClass";
+    }
+
     @PostMapping("/admin/teachingClass/update")
     public String updateTeachingClass(@ModelAttribute TeachingClass teachingClass) {
         TeachingClass currentTeachingClass = teachingClassService.getTeachingClass(teachingClass.getId());

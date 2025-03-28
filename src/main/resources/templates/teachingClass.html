@@ -61,6 +61,11 @@
             <input type="hidden" id="errorMessage" th:value="${errorMessage}">
         </form>
         <hr>
+        <form th:action="@{/admin/teachingClass/distribute}" method="post" style="display: inline;"
+              onsubmit="return confirm('Sind Sie sicher, dass Sie die Themen zuteilen möchten?');">
+            <button id="editButton" type="submit" class="btn btn-sm btn-danger">Themen zuteilen</button>
+        </form>
+        <hr>
         <h2>Liste aller Klassenzimmer</h2>
         <table>
             <tr >

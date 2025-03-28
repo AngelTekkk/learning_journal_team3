@@ -2,8 +2,6 @@ package com.academy.learning_journal_team3.controller;
 
 
 import com.academy.learning_journal_team3.entity.Topic;
-import com.academy.learning_journal_team3.repository.TeachingClassRepository;
-import com.academy.learning_journal_team3.service.TeachingClassService;
 import com.academy.learning_journal_team3.service.TopicsService;
 import com.academy.learning_journal_team3.model.TopicsModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,12 @@ public class TopicsController {
     @Autowired
     private TopicsService topicsService;
 
-    @Autowired
-    private TeachingClassService teachingClassService;
-
-
     @PostMapping("/createTopic")
     public String createTopics(@ModelAttribute TopicsModel topicsModel, RedirectAttributes redirectAttributes){
         try {
             Long topicsId = topicsService.createTopic(topicsModel);
-//            redirectAttributes.addAttribute("id", topicsId);
-//            redirectAttributes.addFlashAttribute("id", topicsId);
+            redirectAttributes.addAttribute("id", topicsId);
+            redirectAttributes.addFlashAttribute("id", topicsId);
             redirectAttributes.addFlashAttribute("successMessage", "Thema erfolgreich erstellt");
             return "redirect:/topics";
 

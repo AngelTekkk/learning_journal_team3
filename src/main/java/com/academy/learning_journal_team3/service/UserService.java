@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +27,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         if (user.getId() == null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else {
@@ -42,13 +41,13 @@ public class UserService {
                 }
             }
         }
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
-    public User updateUser(User user) {
+    public void updateUser(User user) {
         User existingUser = userRepository.findById(user.getId()).orElse(null);
         if (existingUser == null) {
-            return null;
+            return;
         }
 
         existingUser.setFirstName(user.getFirstName());
@@ -63,7 +62,7 @@ public class UserService {
             existingUser.setRole(user.getRole());
         }
 
-        return userRepository.save(existingUser);
+        userRepository.save(existingUser);
     }
 
     public void deleteUser(Long id) {
@@ -87,21 +86,10 @@ public class UserService {
         return null;
     }
 
-    public User getUser(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("Benutzer mit ID " + userId + " nicht gefunden"));
-    }
-
     public List<User> getUsersNotInClass(Long classId) {
         return userRepository.findAll().stream()
                 .filter(user -> user.getTeachingClass() == null || !user.getTeachingClass().getId().equals(classId))
                 .filter(user -> "USER".equals(user.getRole())) // Только пользователи с ролью USER (ученики)
-                .collect(Collectors.toList());
-    }
-
-    public List<User> getUsersByClassId(Long classId) {
-        return userRepository.findAll().stream()
-                .filter(user -> user.getTeachingClass() != null && user.getTeachingClass().getId().equals(classId))
                 .collect(Collectors.toList());
     }
 }
