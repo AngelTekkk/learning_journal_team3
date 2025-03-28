@@ -5,7 +5,6 @@ import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.model.TeachingclassModel;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
-import com.academy.learning_journal_team3.repository.TeachingClassTopicRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 public class TeachingClassService {
@@ -24,17 +22,10 @@ public class TeachingClassService {
     private TeachingClassRepository teachingClassRepository;
 
     @Autowired
-    private TeachingClassTopicRepository teachingClassTopicRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private TopicsRepository topicsRepository;
-
-    public List<TeachingClass> getAllTeachingClass() {
-        return teachingClassRepository.findAll();
-    }
 
     public TeachingClass getTeachingClass(Long teachingClassID) {
         return teachingClassRepository.findById(teachingClassID)
@@ -99,22 +90,6 @@ public class TeachingClassService {
     }
 
     @Transactional
-    public void addTopicToClass(Long classId, Long topicId) {
-        TeachingClass teachingClass = getTeachingClass(classId);
-        Topic topic = topicsRepository.findById(topicId)
-                .orElseThrow(() -> new NoSuchElementException("Thema mit ID " + topicId + " nicht gefunden"));
-
-        if (teachingClass.getTeachingClassTopics().stream()
-                .noneMatch(tcTopic -> tcTopic.getTopic().equals(topic))) {
-            teachingClass.getTeachingClassTopics()
-                    .add(new TeachingClassTopic(teachingClass, topic));
-
-            teachingClassRepository.save(teachingClass);
-        }
-
-    }
-
-    @Transactional
     public void removeTopicFromClass(Long classId, Long topicId) {
         TeachingClass teachingClass = getTeachingClass(classId);
         Topic topic = topicsRepository.findById(topicId)
@@ -128,12 +103,5 @@ public class TeachingClassService {
 
         teachingClass.getTeachingClassTopics().remove(teachingClassTopic);
         teachingClassRepository.save(teachingClass);
-    }
-
-    public List<Topic> getAllTopicsByClass(Long classId) {
-        TeachingClass teachingClass = getTeachingClass(classId);
-        return teachingClass.getTeachingClassTopics().stream()
-               .map(tcTopic -> tcTopic.getTopic())
-               .collect(Collectors.toList());
     }
 }

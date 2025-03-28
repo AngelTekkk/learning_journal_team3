@@ -10,6 +10,15 @@
         <span th:if="${user != null}" th:text="${user.firstName}"></span>
         <span th:if="${user != null}" th:text="${user.lastName}"></span> !</h1>
 
+    <h2 sec:authorize="hasRole('USER')">
+    <span th:if="${user.assignedTopic != null}"
+          th:text="'Ihr Thema des Monats ist ' + ${user.assignedTopic.name}">
+    </span>
+        <span th:if="${user.assignedTopic == null}">
+        Noch kein Thema zugewiesen
+    </span>
+    </h2>
+
     <p>Hier können Sie Ihre Notizen und Lerninhalte speichern und verwalten.</p>
 
     <a th:href="@{/newEntry}">Neuen Eintrag erstellen</a>

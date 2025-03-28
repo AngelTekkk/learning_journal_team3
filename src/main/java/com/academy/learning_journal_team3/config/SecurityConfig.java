@@ -1,6 +1,7 @@
 package com.academy.learning_journal_team3.config;
 
 import com.academy.learning_journal_team3.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    @Autowired
     private CustomUserDetailsService userDetailsService;
 
     @Bean
