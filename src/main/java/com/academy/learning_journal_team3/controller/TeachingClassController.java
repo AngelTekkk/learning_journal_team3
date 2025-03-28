@@ -3,12 +3,14 @@ package com.academy.learning_journal_team3.controller;
 import com.academy.learning_journal_team3.entity.TeachingClass;
 import com.academy.learning_journal_team3.entity.Topic;
 import com.academy.learning_journal_team3.entity.User;
+import com.academy.learning_journal_team3.model.CustomUserDetails;
 import com.academy.learning_journal_team3.model.TeachingclassModel;
 import com.academy.learning_journal_team3.service.TeachingClassService;
 import com.academy.learning_journal_team3.service.TeachingClassTopicService;
 import com.academy.learning_journal_team3.service.UserService;
 import com.academy.learning_journal_team3.service.TopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,46 @@ public class TeachingClassController {
     @Autowired
     private TeachingClassTopicService teachingClassTopicService;
 
+    @GetMapping("/teachingClass")
+    public String teachingClasses(Authentication authentication, Model model) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        User currentUser = userService.findByEmail(userDetails.getUsername());
+        TeachingClass currentUserTeachingClass = userService.findByEmail(userDetails.getUsername()).getTeachingClass();
+        List<TeachingClass> allTeachingClasses = teachingClassService.getAllClasses();
+
+        if (currentUserTeachingClass != null) {
+            List<Topic> topicsInClass = topicsService.getTopicsInClass(currentUserTeachingClass.getId());
+            model.addAttribute("topicsInClass", topicsInClass);
+        }
+
+        model.addAttribute("teachingClass", currentUserTeachingClass);
+        model.addAttribute("teachingClasses", allTeachingClasses);
+        model.addAttribute("userTeachingClass", currentUser.getTeachingClass());
+        return "teachingClass";
+    }
+
+    @PostMapping("/join-teachingClass")
+    public String joinTeachingClass(@RequestParam Long classId, Authentication authentication) {
+        if (authentication != null) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User currentUser = userService.findByEmail(userDetails.getUsername());
+            teachingClassService.addUserToClass(currentUser.getId(), classId);
+            return "redirect:/teachingClass";
+        }
+        return "redirect:/error";
+    }
+
+    @PostMapping("/leave-teachingClass")
+    public String leaveTeachingClass(Authentication authentication) {
+        if (authentication!= null) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User currentUser = userService.findByEmail(userDetails.getUsername());
+            teachingClassService.removeUserFromClass(currentUser.getId());
+            return "redirect:/teachingClass";
+        }
+        return "redirect:/error";
+    }
+
     @PostMapping("/createTeachingClass")
     public String createTeachingClass(@ModelAttribute TeachingclassModel teachingClassModel, RedirectAttributes redirectAttributes){
         try {
@@ -46,32 +88,15 @@ public class TeachingClassController {
         }
     }
 
-    @GetMapping("/teachingClass")
-    public String teachingClasses(Model model) {
-        List<TeachingClass> allTeachingClasses = teachingClassService.getAllClasses();
-        model.addAttribute("teachingClass", allTeachingClasses);
-        return "teachingClass";
-    }
-
     @GetMapping("/admin/teachingClass/{id}")
     public String editTeachingClass(@PathVariable Long id, Model model) {
         TeachingClass teachingClass = teachingClassService.getTeachingClass(id);
         if (teachingClass != null) {
             List<User> allUsers = userService.getAllUsers();
             List<Topic> allTopics = topicsService.getAllTopics();
-
             List<User> availableUsers = userService.getUsersNotInClass(id);
-
             List<Topic> availableTopics = topicsService.getTopicsNotInClass(id);
-
             List<Topic> topicsInClass = topicsService.getTopicsInClass(id);
-
-            System.out.println(topicsInClass);
-
-            topicsInClass.forEach(topic -> {
-                System.out.println("Topic ID: " + topic.getId());
-                System.out.println("Related Topic ID: " + topic.getName());
-            });
 
             model.addAttribute("teachingClass", teachingClass);
             model.addAttribute("topicsInClass", topicsInClass);

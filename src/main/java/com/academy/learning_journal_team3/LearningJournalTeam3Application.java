@@ -7,7 +7,6 @@ import com.academy.learning_journal_team3.repository.EntryRepository;
 import com.academy.learning_journal_team3.repository.TeachingClassRepository;
 import com.academy.learning_journal_team3.repository.TopicsRepository;
 import com.academy.learning_journal_team3.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

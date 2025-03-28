@@ -2,13 +2,16 @@ package com.academy.learning_journal_team3.controller;
 
 import com.academy.learning_journal_team3.entity.User;
 import com.academy.learning_journal_team3.model.CustomUserDetails;
+import com.academy.learning_journal_team3.service.PasswordResetService;
 import com.academy.learning_journal_team3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordResetService passwordResetService;
 
     @GetMapping("/registration")
     public String registrationPage(Authentication authentication, Model model,
@@ -53,6 +59,25 @@ public class UserController {
 
         userService.saveUser(user);
         return "redirect:/welcome";
+    }
+
+    @GetMapping("/forgot-password")
+    public String forgotPasswordPage() {
+        return "forgot-password";
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPassword(@RequestParam String email, RedirectAttributes redirectAttributes) {
+        try {
+            passwordResetService.sendPasswordResetEmail(email);
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Ein temporäres Passwort wurde an Ihre E-Mail-Adresse gesendet.");
+            return "redirect:/login";
+        } catch (UsernameNotFoundException e) {
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Es wurde kein Benutzer mit dieser E-Mail Adresse gefunden.");
+            return "redirect:/forgot-password";
+        }
     }
 
     @GetMapping("/profile")

@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .headers(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/css/**", "/login", "/registration", "/error", "/h2-console/**").permitAll()
+                        .requestMatchers("/css/**", "/login", "/registration", "/error", "/h2-console/**", "/forgot-password").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
