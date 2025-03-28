@@ -34,5 +34,9 @@ public class TeachingClassTopicService {
 
         teachingClassTopicRepository.save(teachingClassTopic);
     }
+
+    public void giveTopicsToUsers() {
+        teachingClassRepository.findAll();
+    }
 }
 

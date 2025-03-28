@@ -3,6 +3,7 @@ package com.academy.learning_journal_team3.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -30,6 +31,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "forgot_password")
+    private boolean forgotPassword;
+
     @Column(name = "role")
     private String role; // ADMIN, USER
 
@@ -39,4 +43,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     private TeachingClass teachingClass;
+
+    @PrePersist
+    protected void onCreate() {
+        this.forgotPassword = false;
+    }
 }

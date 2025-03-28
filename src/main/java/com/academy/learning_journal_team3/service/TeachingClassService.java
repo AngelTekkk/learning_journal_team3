@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class TeachingClassService {
@@ -127,5 +128,12 @@ public class TeachingClassService {
 
         teachingClass.getTeachingClassTopics().remove(teachingClassTopic);
         teachingClassRepository.save(teachingClass);
+    }
+
+    public List<Topic> getAllTopicsByClass(Long classId) {
+        TeachingClass teachingClass = getTeachingClass(classId);
+        return teachingClass.getTeachingClassTopics().stream()
+               .map(tcTopic -> tcTopic.getTopic())
+               .collect(Collectors.toList());
     }
 }
